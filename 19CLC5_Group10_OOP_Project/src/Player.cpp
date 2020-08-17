@@ -45,3 +45,11 @@ bool Player::reachedGoal() const {
 	float y = playerSprite.getPosition().y;
 	return y <= 50;
 }
+
+sf::FloatRect Player::getBound() const {
+	return playerSprite.getGlobalBounds();
+}
+
+sf::Vector2f Player::getPosition() const {
+	return playerSprite.getPosition();
+}

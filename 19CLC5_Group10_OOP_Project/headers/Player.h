@@ -11,7 +11,8 @@ public:
 	void draw(sf::RenderWindow&) const;
 	bool isDead() const;
 	bool reachedGoal() const;
-
+	sf::FloatRect getBound() const;
+	sf::Vector2f getPosition() const;
 private:
 	float x, y;
 	sf::Sprite playerSprite;
