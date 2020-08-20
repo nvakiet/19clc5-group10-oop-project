@@ -8,7 +8,7 @@ trafficlane::trafficlane(double fXpos, double fYpos, double fWidth, double lands
     m_vptexTextures = textures;
     m_LaneSpeed = landspeed/abs(landspeed);
     m_level = level;
-    magic = rand()%3*5*(m_level+1); //hack speed
+    hack_speed = rand()%3*5*(m_level+1); //hack speed
 }
 
 void trafficlane::draw(sf::RenderWindow &window)
@@ -44,7 +44,7 @@ void trafficlane::update(double elapsed, double fGameTime)
         while (speed <= 70)
         {
             countt++;
-            speed = mg[rand()%8] + magic;
+            speed = mg[rand()%8] + hack_speed;
             if (CarsInLane.size()==0) break;
             if (!CarsInLane[CarsInLane.size()-1].crash(speed)) speed =0;
             if (countt > 2) goto jump;
@@ -66,8 +66,7 @@ double trafficlane::getNextSpawn()
 	float fMaxTime;		// Maximum time for a car to spawn
 	fMinTime = 1;		// Distance of a vehicle plus size of the player
 	fMaxTime = 3+(6-m_level);	// Distance of 3 vehicles plus the size of the player
-	double magic = (fMinTime + (float) (rand()) / ( (float) (RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
-	return magic;
+	return (fMinTime + (float) (rand()) / ( (float) (RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
 }
 
 bool trafficlane::checkCollision(sf::FloatRect other)

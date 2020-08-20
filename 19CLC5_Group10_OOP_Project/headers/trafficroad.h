@@ -20,7 +20,7 @@ private:
     double m_NextSpawn;
     double m_Width;
     double m_LaneSpeed;
-    double magic;
+    double hack_speed; //hack speed follow level
     double m_level;
 
     sf::Clock spawnClock;
@@ -36,7 +36,7 @@ public:
     void update_nextspawn(double timeplus);
     double getNextSpawn();
     bool checkCollision(sf::FloatRect other);
-    bool check_position_light();
+    bool check_position_light(); // check have car in position light or not
 };
 
 #endif // TRAFFICROAD_H

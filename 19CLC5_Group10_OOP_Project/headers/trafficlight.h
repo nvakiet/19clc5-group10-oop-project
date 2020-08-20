@@ -17,12 +17,12 @@ private:
     double m_length;
     double m_width;
     double m_level;
-    double m_NextStop;
+    double m_NextStop; //time to change status
 
     sf::Clock StopClock;
 
 public:
-    bool m_status;
+    bool m_status; //on or off|   true that car can run
     sf::RectangleShape m_rectBox;
 
     trafficlight(double mXpos, double mYpos, double length, double width,double level);

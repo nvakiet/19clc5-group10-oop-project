@@ -2,7 +2,7 @@
 
 trafficlight::trafficlight(double mXpos, double mYpos, double length, double width,double level)
 {
-    m_status = true;
+    m_status = false;
     m_fX = mXpos;
     m_fY = mYpos;
     m_length = length;
@@ -11,7 +11,7 @@ trafficlight::trafficlight(double mXpos, double mYpos, double length, double wid
 
     sf::Texture* text;
     text = new sf::Texture;
-    text->loadFromFile("D:/c++ source/codeblock/crossy road project oop/assets/stop.png");
+    text->loadFromFile("assets/stop.png");
 
     m_rectBox.setPosition(sf::Vector2f(mXpos,mYpos));
     m_rectBox.setSize(sf::Vector2f(m_length,m_width));

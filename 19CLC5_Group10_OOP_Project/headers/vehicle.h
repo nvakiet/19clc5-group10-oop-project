@@ -18,7 +18,6 @@ public:
     double m_fSpeed;
     double m_fLength;
     double m_fWidth;
-    double m_timeend;
 
     sf::RectangleShape m_rectBox;
     sf::Texture *carTextures;
@@ -30,7 +29,7 @@ public:
 	void update(double elapsed);
 	void draw(sf::RenderWindow& window);
 	bool checkCollision(sf::FloatRect other);
-	bool crash(double v);
+	bool crash(double v); // check with the last car v = van toc xe trc
 };
 
 #endif // vehiclelib

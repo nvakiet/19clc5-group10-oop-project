@@ -16,7 +16,6 @@ vehicle::vehicle(float speed, float xPos, float yPos, float length, vector<sf::T
 
     if (m_fSpeed < 0)
     {
-        m_timeend = (xPos)/speed;
         m_rectBox.scale(-1 , 1); // reverses the textture
     }
 }
@@ -47,6 +46,7 @@ bool vehicle::checkCollision(sf::FloatRect other) {
 
 bool vehicle::crash(double v)
 {
+    // 600 x 800 do rong mang hinh
     if (m_fSpeed > 0) if (((double)800.0 - m_fX)/m_fSpeed < (double)800.0/v) return true;
     if (m_fSpeed < 0) if (((double)m_fX)/abs(m_fSpeed) < (double)800.0/abs(v)) return true;
     return false;
