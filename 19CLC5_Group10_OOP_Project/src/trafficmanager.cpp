@@ -70,7 +70,7 @@ bool trafficmanager::checkCollosion(sf::FloatRect other)
 
 void trafficmanager::uploadtexture()
 {
-int numcar = 22;
+	const int numcar = 22;
     string Car[numcar] =
 	{
 		"assets/textures/vehicles/fast/AudiBlue.png",

@@ -11,21 +11,21 @@ void Player::move(const sf::Event& event, const float& frameTime) {
 	if (event.type == sf::Event::KeyPressed) {
 		switch (event.key.code) {
 		case sf::Keyboard::Up:
-			if (playerSprite.getPosition().y - 300 * frameTime > 0)
-				y -= 300 * frameTime;
+			if (playerSprite.getPosition().y - 100 * frameTime > 0)
+				y -= 100 * frameTime;
 			break;
 		case sf::Keyboard::Down:
-			if (playerSprite.getPosition().y + 300 * frameTime < 600)
-				y += 300 * frameTime;
+			if (playerSprite.getPosition().y + 100 * frameTime < 600)
+				y += 100 * frameTime;
 			break;
 		case sf::Keyboard::Left:
-			if (playerSprite.getPosition().x - 300 * frameTime > 0)
-				x -= 300 * frameTime;
+			if (playerSprite.getPosition().x - 100 * frameTime > 0)
+				x -= 100 * frameTime;
 			playerSprite.setScale(-0.1f, 0.1f);
 			break;
 		case sf::Keyboard::Right:
-			if (playerSprite.getPosition().x + 300 * frameTime < 800)
-				x += 300 * frameTime;
+			if (playerSprite.getPosition().x + 100 * frameTime < 800)
+				x += 100 * frameTime;
 			playerSprite.setScale(0.1f, 0.1f);
 			break;
 		}
