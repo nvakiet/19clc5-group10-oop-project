@@ -3,6 +3,7 @@
 
 #include "trafficroad.h"
 #include "trafficlight.h"
+#include "textureLoad.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -20,10 +21,7 @@ private:
     vector <trafficlight> m_light;
 
 public:
-    trafficmanager();
-    ~trafficmanager();
-    void uploadtexture();
-    void unloadtexture();
+    trafficmanager(texture &texturemanager);
     void update(double elapsed, double gametime);
     void draw(sf::RenderWindow & window);
     bool checkCollosion(sf::FloatRect other);

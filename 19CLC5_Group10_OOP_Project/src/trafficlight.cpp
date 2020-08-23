@@ -8,14 +8,17 @@ trafficlight::trafficlight(double mXpos, double mYpos, double length, double wid
     m_length = length;
     m_width = width;
     m_level = level;
+    m_NextStop = 0.5;
 
     sf::Texture* text;
     text = new sf::Texture;
     text->loadFromFile("assets/stop.png");
+    //texture a;    chua co hinh :))
+
 
     m_rectBox.setPosition(sf::Vector2f(mXpos,mYpos));
     m_rectBox.setSize(sf::Vector2f(m_length,m_width));
-    m_rectBox.setTexture(text);
+    m_rectBox.setTexture(text);//m_rectBox.setTexture(a.);
 }
 
 void trafficlight::draw(sf::RenderWindow &window)
@@ -29,13 +32,13 @@ double trafficlight::getNextStop()
 	float fMaxTime;		// Maximum time for a car to spawn
 	if (m_status)
     {
-        fMinTime = 9;		// Distance of a vehicle plus size of the player
-        fMaxTime = 15+(6-m_level);	// Distance of 3 vehicles plus the size of the player
+        fMinTime = 6;		// Distance of a vehicle plus size of the player
+        fMaxTime = 10+(6-m_level);	// Distance of 3 vehicles plus the size of the player
     }
     else
     {
         fMinTime = 3;		// Distance of a vehicle plus size of the player
-        fMaxTime = 5+(6-m_level);	// Distance of 3 vehicles plus the size of the player
+        fMaxTime = 4+(6-m_level);	// Distance of 3 vehicles plus the size of the player
     }
 	double magic = (fMinTime + (float) (rand()) / ( (float) (RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
 	return magic;
@@ -48,8 +51,8 @@ void trafficlight::update(double fGameTime)
 		m_fTimeSinceStop = StopClock.getElapsedTime().asSeconds() * 60;
 	else
 		m_fTimeSinceStop = StopClock.getElapsedTime().asSeconds();
-
-    if (m_fTimeSinceStop > m_NextStop)
+    double magic = m_fTimeSinceStop - m_NextStop;// tranh bugs'
+    if (magic > 0)
     {
         bool tmp = !m_status;
         m_status = tmp;

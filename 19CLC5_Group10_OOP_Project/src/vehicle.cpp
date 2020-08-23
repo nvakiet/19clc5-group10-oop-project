@@ -6,7 +6,7 @@ vehicle::vehicle(float speed, float xPos, float yPos, float length, vector<sf::T
 	m_fY = yPos;
 	m_fSpeed = speed;
 	m_fLength = length;
-	m_fWidth = 46;
+	m_fWidth = 45;
 
     m_rectBox.setPosition(sf::Vector2f(m_fX,m_fY)); // set position of vehicle
     m_rectBox.setSize(sf::Vector2f(m_fLength, m_fWidth));	// Sets the size of the vehicle

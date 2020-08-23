@@ -8,6 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <iomanip>
+
+using namespace std;
 
 class trafficlight
 {
