@@ -1,6 +1,6 @@
 #include "AnimalLaneManager.h"
 
-AnimalManager::AnimalManager(texture& textureManager)
+AnimalManager::AnimalManager(const texture& textureManager)
 {
 	land.clear();
 	animal = textureManager.animal;

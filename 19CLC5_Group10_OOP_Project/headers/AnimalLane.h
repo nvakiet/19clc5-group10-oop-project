@@ -1,5 +1,5 @@
-#ifndef TRAFFICROAD_H
-#define TRAFFICROAD_H
+#ifndef ANIMALLANE_H
+#define ANIMALLANE_H
 
 #include "Animal.h"
 #include <iostream>

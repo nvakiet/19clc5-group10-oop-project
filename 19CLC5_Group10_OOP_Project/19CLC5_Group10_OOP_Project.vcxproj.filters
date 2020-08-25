@@ -21,18 +21,6 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\trafficlight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\trafficmanager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\trafficroad.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\vehicle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\textureLoad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -50,28 +38,16 @@
     <ClInclude Include="headers\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\trafficlight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\trafficmanager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\trafficroad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\vehicle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\textureLoad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Animal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\AnimalLane.h">
+    <ClInclude Include="headers\AnimalLaneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\AnimalLaneManager.h">
+    <ClInclude Include="headers\AnimalLane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

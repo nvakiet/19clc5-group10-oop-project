@@ -25,10 +25,6 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\textureLoad.cpp" />
-    <ClCompile Include="src\trafficlight.cpp" />
-    <ClCompile Include="src\trafficmanager.cpp" />
-    <ClCompile Include="src\trafficroad.cpp" />
-    <ClCompile Include="src\vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Animal.h" />
@@ -36,10 +32,6 @@
     <ClInclude Include="headers\AnimalLaneManager.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\textureLoad.h" />
-    <ClInclude Include="headers\trafficlight.h" />
-    <ClInclude Include="headers\trafficmanager.h" />
-    <ClInclude Include="headers\trafficroad.h" />
-    <ClInclude Include="headers\vehicle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

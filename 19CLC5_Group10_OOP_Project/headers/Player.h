@@ -2,16 +2,20 @@
 #define PLAYER_H
 
 #include <SFML/Graphics.hpp>
+
 using namespace std;
+
+class AnimalManager;
 
 class Player {
 public:
 	Player(const sf::Texture&);
 	void move(const sf::Event&, const float&);
 	void draw(sf::RenderWindow&) const;
+	bool isImpact(AnimalManager*);
 	bool isDead() const;
 	bool reachedGoal() const;
-	sf::FloatRect getBound() const;
+	//sf::FloatRect getBound() const;
 	sf::Vector2f getPosition() const;
 private:
 	float x, y;

@@ -3,25 +3,27 @@
 #include <iostream>
 #include "Player.h"
 #include "textureLoad.h"
-#include "trafficmanager.h"
 #include "AnimalLaneManager.h"
 int main()
 {
     //Initialize window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Cross The Road", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Cross The Road", sf::Style::Titlebar || sf::Style::Close);
     bool isFullscreen = true;
     window.setFramerateLimit(60);
 
     //Setup resource managers
     texture textureManager;
 
-    //Test Player class
+    //Init game components
     Player player(*textureManager.player[0]);
-    sf::Clock clock;
+    AnimalManager animals(textureManager);
+    //Start game clock
+    sf::Clock gameClock;
+    sf::Clock frameClock;
     float lastElapse = 0;
 
     //Game Loop
-    while (window.isOpen())
+    while (window.isOpen() && !player.isDead())
     {
         //Event catching phase
         sf::Event event;
@@ -49,18 +51,23 @@ int main()
             
         }
         player.move(event, lastElapse);
-        
+        animals.update(lastElapse, gameClock.getElapsedTime().asSeconds());
         
         //Logic phase
-        
+        if (player.isImpact(&animals))
+            cout << "An animal hit you!" << endl;
+        if (player.isDead()) {
+            cout << "You died!" << endl;
+        }
 
         //Drawing phase
         window.clear();
         player.draw(window);
+        animals.draw(window);
         window.display();
 
         //New frame time
-        lastElapse = clock.restart().asSeconds();
+        lastElapse = frameClock.restart().asSeconds();
         cout << "Frame time: " << lastElapse << endl;
         cout << "FPS: " << 1 / lastElapse << endl;
     }

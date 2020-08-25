@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "AnimalLaneManager.h"
 Player::Player(const sf::Texture& playerTexture) : state(1), x(400), y(575) {
 	playerSprite.setTexture(playerTexture); //Player texture is a rectangle size 400 x 500
 	playerSprite.setScale(0.1f, 0.1f);
@@ -46,10 +46,18 @@ bool Player::reachedGoal() const {
 	return y <= 50;
 }
 
-sf::FloatRect Player::getBound() const {
-	return playerSprite.getGlobalBounds();
-}
+//sf::FloatRect Player::getBound() const {
+//	return playerSprite.getGlobalBounds();
+//}
 
 sf::Vector2f Player::getPosition() const {
 	return playerSprite.getPosition();
+}
+
+bool Player::isImpact(AnimalManager* animals) {
+	if (animals->checkCollosion(playerSprite.getGlobalBounds())) {
+		state = 0;
+		return true;
+	}
+	else return false;
 }

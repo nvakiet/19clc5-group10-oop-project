@@ -19,7 +19,7 @@ private:
     vector <AnimalLane> land;
 
 public:
-    AnimalManager(texture& textureManager);
+    AnimalManager(const texture& textureManager);
     ~AnimalManager();
     void unloadtexture();
     void update(float elapsed, float gametime);
