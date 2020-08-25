@@ -1,5 +1,5 @@
-#ifndef textureLoad_h
-#define textureLoad_h
+#ifndef load_h
+#define load_h
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -16,6 +16,7 @@ public:
 	sf::Texture* background;
 	sf::Texture* title;
 	sf::Texture* selected;
+	sf::Texture* traffic;
 
 	texture();
 	~texture();

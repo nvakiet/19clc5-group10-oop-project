@@ -10,14 +10,14 @@ using namespace std;
 class menu
 {
 protected:
-    texture textureList;
+    //texture textureList;
     sf::Sprite bg;
     sf::Sprite title;
     sf::Sprite selected;
     sf::Font font;
     int pVertical;
 public:
-    menu();
+    menu(const texture &textureList);
     int getpVertical();
 };
 
@@ -27,7 +27,7 @@ private:
     int nMainText;
     vector<sf::Text*> mainText;
 public:
-    mainMenu();
+    mainMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
     void Switch(sf::RenderWindow& w);
     ~mainMenu();
@@ -39,7 +39,7 @@ private:
     int nPauseText;
     vector<sf::Text*> pauseText;
 public:
-    pauseMenu();
+    pauseMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
     void Switch(sf::RenderWindow& w);
     ~pauseMenu();
@@ -53,7 +53,7 @@ private:
     vector<sf::Text*> boolText;
     int pHorizontal;
 public:
-    settingsMenu();
+    settingsMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
     void Switch(sf::RenderWindow& w);
     int getpHorizontal();

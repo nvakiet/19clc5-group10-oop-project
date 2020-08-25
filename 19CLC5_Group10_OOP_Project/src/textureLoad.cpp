@@ -63,6 +63,8 @@ texture::texture()
 	title->loadFromFile("images/textures/Road.png", sf::IntRect(0, 0, 800, 250));
 	selected = new sf::Texture;
 	selected->loadFromFile("images/textures/selected.png", sf::IntRect(0, 0, 800, 48));
+	traffic = new sf::Texture;
+	traffic->loadFromFile("images/textures/traffic.png", sf::IntRect(0, 0, 40, 40));
 }
 texture::~texture()
 {
@@ -75,4 +77,5 @@ texture::~texture()
 	delete background;
 	delete title;
 	delete selected;
+	delete traffic;
 }

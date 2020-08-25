@@ -1,6 +1,6 @@
 #include "menu.h"
 
-menu::menu()
+menu::menu(const texture& textureList)
 {
     bg.setTexture(*textureList.background);
     title.setTexture(*textureList.title);
@@ -13,7 +13,7 @@ int menu::getpVertical()
     return pVertical;
 }
 
-mainMenu::mainMenu() :menu()
+mainMenu::mainMenu(const texture& textureList) :menu(textureList)
 {
     nMainText = 3;
     for (int i = 0; i < nMainText; i++)
@@ -69,7 +69,7 @@ mainMenu::~mainMenu()
     mainText.clear();
 }
 
-pauseMenu::pauseMenu() :menu()
+pauseMenu::pauseMenu(const texture& textureList) :menu(textureList)
 {
     nPauseText = 4;
     for (int i = 0; i < nPauseText; i++)
@@ -128,7 +128,7 @@ pauseMenu::~pauseMenu()
     pauseText.clear();
 }
 
-settingsMenu::settingsMenu() :menu()
+settingsMenu::settingsMenu(const texture& textureList) :menu(textureList)
 {
     nSettingsText = 3;
     for (int i = 0; i < nSettingsText; i++)
@@ -212,21 +212,22 @@ settingsMenu::~settingsMenu()
     boolText.clear();
 }
 
-/*int main()
+int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "CROSS THE ROAD");
     window.setFramerateLimit(60);
+    texture t;
  
-    mainMenu main;
+    /*mainMenu main(t);
 
     while (window.isOpen())
     {
         main.draw(window);
         main.Switch(window);
     }
-    return 0;
+    return 0;*/
 
-    /*pauseMenu pause;
+    /*pauseMenu pause(t);
 
     while (window.isOpen())
     {
@@ -234,7 +235,7 @@ settingsMenu::~settingsMenu()
         pause.Switch(window);
     }*/
 
-    /*settingsMenu settings;
+    settingsMenu settings(t);
 
     while (window.isOpen())
     {
@@ -242,4 +243,4 @@ settingsMenu::~settingsMenu()
         settings.Switch(window);
     }
     return 0;
-}*/
+}
