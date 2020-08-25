@@ -1,4 +1,4 @@
-#include "Lane.h"
+#include "AnimalLane.h"
 
 trafficlane::trafficlane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int findex)
 {

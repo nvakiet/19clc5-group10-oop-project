@@ -1,7 +1,7 @@
 #ifndef TRAFFICMANAGER_H
 #define TRAFFICMANAGER_H
 
-#include "Lane.h"
+#include "AnimalLane.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
