@@ -34,7 +34,6 @@ mainMenu::mainMenu(const texture& textureList) :menu(textureList)
 void mainMenu::draw(sf::RenderWindow& w)
 {
     title.setPosition(sf::Vector2f(0.f, 150.f));
-    w.clear(sf::Color::Black);
     w.draw(bg);
     w.draw(title);
     if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 202.f));
@@ -42,9 +41,8 @@ void mainMenu::draw(sf::RenderWindow& w)
     else selected.setPosition(sf::Vector2f(0.f, 302.f));
     w.draw(selected);
     for (int i = 0; i < nMainText; i++) w.draw(*mainText[i]);
-    w.display();
 }
-void mainMenu::Switch(sf::RenderWindow& w)
+int mainMenu::Switch(sf::RenderWindow& w)
 {
     sf::Event event;
     while (w.pollEvent(event))
@@ -61,7 +59,9 @@ void mainMenu::Switch(sf::RenderWindow& w)
         }
         if (pVertical == nMainText) pVertical = 0;
         if (pVertical == -1) pVertical = nMainText - 1;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
     }
+    return -1;
 }
 mainMenu::~mainMenu()
 {
@@ -120,7 +120,10 @@ void pauseMenu::Switch(sf::RenderWindow& w)
         }
         if (pVertical == nPauseText - 1) pVertical = 0;
         if (pVertical == -1) pVertical = nPauseText - 2;
+        
+        
     }
+   
 }
 pauseMenu::~pauseMenu()
 {
@@ -212,35 +215,35 @@ settingsMenu::~settingsMenu()
     boolText.clear();
 }
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(800, 600), "CROSS THE ROAD");
-    window.setFramerateLimit(60);
-    texture t;
- 
-    /*mainMenu main(t);
-
-    while (window.isOpen())
-    {
-        main.draw(window);
-        main.Switch(window);
-    }
-    return 0;*/
-
-    /*pauseMenu pause(t);
-
-    while (window.isOpen())
-    {
-        pause.draw(window);
-        pause.Switch(window);
-    }*/
-
-    settingsMenu settings(t);
-
-    while (window.isOpen())
-    {
-        settings.draw(window);
-        settings.Switch(window);
-    }
-    return 0;
-}
+//int main()
+//{
+//    sf::RenderWindow window(sf::VideoMode(800, 600), "CROSS THE ROAD");
+//    window.setFramerateLimit(60);
+//    texture t;
+// 
+//    /*mainMenu main(t);
+//
+//    while (window.isOpen())
+//    {
+//        main.draw(window);
+//        main.Switch(window);
+//    }
+//    return 0;*/
+//
+//    /*pauseMenu pause(t);
+//
+//    while (window.isOpen())
+//    {
+//        pause.draw(window);
+//        pause.Switch(window);
+//    }*/
+//
+//    settingsMenu settings(t);
+//
+//    while (window.isOpen())
+//    {
+//        settings.draw(window);
+//        settings.Switch(window);
+//    }
+//    return 0;
+//}

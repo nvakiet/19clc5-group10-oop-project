@@ -4,7 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "load.h"
+#include "textureLoad.h"
 using namespace std;
 
 class menu
@@ -29,7 +29,7 @@ private:
 public:
     mainMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
-    void Switch(sf::RenderWindow& w);
+    int Switch(sf::RenderWindow& w);
     ~mainMenu();
 };
 
