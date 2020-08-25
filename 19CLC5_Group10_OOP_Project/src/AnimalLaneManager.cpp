@@ -4,17 +4,17 @@ AnimalManager::AnimalManager(const texture& textureManager)
 {
 	land.clear();
 	animal = textureManager.animal;
-	land.push_back(AnimalLane(0, 100, 40, 110, 3, animal,1));
-	land.push_back(AnimalLane(800, 300, 40, -130, 3, animal,0));
-	land.push_back(AnimalLane(0, 350, 40, 120, 3, animal,1));
-	land.push_back(AnimalLane(800, 550, 40, -115, 3, animal,0));
+	land.push_back(AnimalLane(0, 50, 40, 110, 3, animal,1));
+	land.push_back(AnimalLane(800, 250, 40, -130, 3, animal,0));
+	land.push_back(AnimalLane(0, 300, 40, 120, 3, animal,1));
+	land.push_back(AnimalLane(800, 500, 40, -115, 3, animal,0));
 
 }
 
-AnimalManager::~AnimalManager()
-{
-	unloadtexture();
-}
+//AnimalManager::~AnimalManager()
+//{
+//	unloadtexture();
+//}
 
 void AnimalManager::update(float elapsed, float gametime)
 {
@@ -34,7 +34,7 @@ void AnimalManager::draw(sf::RenderWindow& window)
 
 bool AnimalManager::checkCollosion(sf::FloatRect other)
 {
-	for (int i = 0; i <= land.size(); i++) {
+	for (int i = 0; i < land.size(); i++) {
 		if (land[i].checkCollision(other))
 		{
 			return true;	// collision
@@ -44,11 +44,11 @@ bool AnimalManager::checkCollosion(sf::FloatRect other)
 }
 
 
-void AnimalManager::unloadtexture()
-{
-	for (int i = 0; i < animal.size(); i++)
-	{
-		delete animal[i];
-	}
-	animal.clear();
-}
+//void AnimalManager::unloadtexture()
+//{
+//	for (int i = 0; i < animal.size(); i++)
+//	{
+//		delete animal[i];
+//	}
+//	animal.clear();
+//}

@@ -3,7 +3,7 @@
 trafficmanager::trafficmanager(texture &textureManager)
 {
     m_vland.clear();
-    m_car = textureManager.texture_vehicle;
+    m_car = textureManager.vehicle;
     int magic[] = {100,200,350,450};
     for (int i=0; i<4; i++)
     {
@@ -55,7 +55,7 @@ void trafficmanager::draw(sf::RenderWindow &window)
 
 bool trafficmanager::checkCollosion(sf::FloatRect other)
 {
-    for (int i = 0; i <= m_vland.size(); i++){
+    for (int i = 0; i < m_vland.size(); i++){
 		if (m_vland[i].checkCollision(other))
 		{
 			return true;	// collision

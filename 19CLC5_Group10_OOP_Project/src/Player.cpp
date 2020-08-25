@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "trafficmanager.h"
 #include "AnimalLaneManager.h"
 Player::Player(const sf::Texture& playerTexture) : state(1), x(400), y(575) {
 	playerSprite.setTexture(playerTexture); //Player texture is a rectangle size 400 x 500
@@ -52,6 +53,14 @@ bool Player::reachedGoal() const {
 
 sf::Vector2f Player::getPosition() const {
 	return playerSprite.getPosition();
+}
+
+bool Player::isImpact(trafficmanager* traffics) {
+	if (traffics->checkCollosion(playerSprite.getGlobalBounds())) {
+		state = 0;
+		return true;
+	}
+	else return false;
 }
 
 bool Player::isImpact(AnimalManager* animals) {

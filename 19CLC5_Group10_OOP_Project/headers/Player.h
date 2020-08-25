@@ -5,13 +5,14 @@
 
 using namespace std;
 
+class trafficmanager;
 class AnimalManager;
-
 class Player {
 public:
 	Player(const sf::Texture&);
 	void move(const sf::Event&, const float&);
 	void draw(sf::RenderWindow&) const;
+	bool isImpact(trafficmanager*);
 	bool isImpact(AnimalManager*);
 	bool isDead() const;
 	bool reachedGoal() const;

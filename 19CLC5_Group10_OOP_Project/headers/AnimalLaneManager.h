@@ -20,8 +20,8 @@ private:
 
 public:
     AnimalManager(const texture& textureManager);
-    ~AnimalManager();
-    void unloadtexture();
+    //~AnimalManager();
+    //void unloadtexture();
     void update(float elapsed, float gametime);
     void draw(sf::RenderWindow& window);
     bool checkCollosion(sf::FloatRect other);
