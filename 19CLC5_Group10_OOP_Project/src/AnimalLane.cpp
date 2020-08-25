@@ -1,6 +1,6 @@
 #include "AnimalLane.h"
 
-trafficlane::trafficlane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int findex)
+AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int findex)
 {
     laneHeight = fYpos;
     laneXStart = fXpos;
@@ -11,13 +11,13 @@ trafficlane::trafficlane(float fXpos, float fYpos, float fWidth, float landspeed
     number = getNumber();
     index = findex;
 }
-void trafficlane::draw(sf::RenderWindow& window)
+void AnimalLane::draw(sf::RenderWindow& window)
 {
     for (int i = 0; i < AnimalsInLane.size(); i++)
         AnimalsInLane[i].draw(window);
 }
 
-void trafficlane::update(float elapsed, float fGameTime)
+void AnimalLane::update(float elapsed, float fGameTime)
 {
     for (int i = 0; i < AnimalsInLane.size(); i++)
         AnimalsInLane[i].update(elapsed);
@@ -42,7 +42,7 @@ void trafficlane::update(float elapsed, float fGameTime)
     }
 }
 
-float trafficlane::getNextSpawn()
+float AnimalLane::getNextSpawn()
 {
     float fTempLaneSpeed;
     // turning speed to always be positve
@@ -73,7 +73,7 @@ float trafficlane::getNextSpawn()
     return time;
 }
 
-bool trafficlane::checkCollision(sf::FloatRect other)
+bool AnimalLane::checkCollision(sf::FloatRect other)
 {
     // Call checkCollision for each animal in the lane
     for (unsigned int i = 0; i < AnimalsInLane.size(); i++) {
@@ -85,7 +85,7 @@ bool trafficlane::checkCollision(sf::FloatRect other)
     return false;	// no collision
 }
 
-int trafficlane::getNumber()
+int AnimalLane::getNumber()
 {
     int n = rand() % 3 + 3;
     return n;

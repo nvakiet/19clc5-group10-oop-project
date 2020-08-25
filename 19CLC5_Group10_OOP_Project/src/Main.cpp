@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "textureLoad.h"
 #include "trafficmanager.h"
+#include "AnimalLaneManager.h"
 int main()
 {
     //Initialize window
@@ -16,7 +17,6 @@ int main()
 
     //Test Player class
     Player player(*textureManager.player[0]);
-
     sf::Clock clock;
     float lastElapse = 0;
 

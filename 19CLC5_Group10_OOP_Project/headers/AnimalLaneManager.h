@@ -1,7 +1,8 @@
-#ifndef TRAFFICMANAGER_H
-#define TRAFFICMANAGER_H
+#ifndef AnimalManager_H
+#define AnimalManager_H
 
 #include "AnimalLane.h"
+#include "textureLoad.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -11,20 +12,19 @@
 #include <SFML/System.hpp>
 
 
-class trafficmanager
+class AnimalManager
 {
 private:
     vector <sf::Texture*> animal;
-    vector <trafficlane> land;
+    vector <AnimalLane> land;
 
 public:
-    trafficmanager();
-    ~trafficmanager();
-    void uploadtexture();
+    AnimalManager(texture& textureManager);
+    ~AnimalManager();
     void unloadtexture();
     void update(float elapsed, float gametime);
     void draw(sf::RenderWindow& window);
     bool checkCollosion(sf::FloatRect other);
 };
 
-#endif // TRAFFICMANAGER_H
+#endif // AnimalManager_H

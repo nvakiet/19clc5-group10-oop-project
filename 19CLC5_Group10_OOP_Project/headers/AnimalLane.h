@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class trafficlane
+class AnimalLane
 {
 private:
     float laneHeight;
@@ -31,7 +31,7 @@ private:
     vector<animal> AnimalsInLane;
 
 public:
-    trafficlane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int index);
+    AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int index);
     void draw(sf::RenderWindow& window);
     void update(float elapsed, float fGameTime);
     float getNextSpawn();
