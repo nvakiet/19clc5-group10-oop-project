@@ -17,8 +17,7 @@ protected:
     sf::Font font;
     int pVertical;
 public:
-    menu(const texture &textureList);
-    int getpVertical();
+    menu(const texture& textureList);
 };
 
 class mainMenu :public menu
@@ -41,7 +40,7 @@ private:
 public:
     pauseMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
-    void Switch(sf::RenderWindow& w);
+    int Switch(sf::RenderWindow& w);
     ~pauseMenu();
 };
 
@@ -50,14 +49,40 @@ class settingsMenu :public menu
 private:
     int nSettingsText;
     vector<sf::Text*> settingsText;
-    vector<sf::Text*> boolText;
-    int pHorizontal;
+    vector<sf::Text*> musicOptText;
+    vector<sf::Text*> fullscreenOptText;
+    int musicOpt, fullscreenOpt;
 public:
     settingsMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
-    void Switch(sf::RenderWindow& w);
-    int getpHorizontal();
+    int Switch(sf::RenderWindow& w);
+    int getMusicOpt();
+    int getfullscreenOpt();
     ~settingsMenu();
+};
+
+class loseMenu :public menu
+{
+private:
+    int nLoseText;
+    vector<sf::Text*> loseText;
+public:
+    loseMenu(const texture& textureList);
+    void draw(sf::RenderWindow& w);
+    int Switch(sf::RenderWindow& w);
+    ~loseMenu();
+};
+
+class victoryMenu :public menu
+{
+private:
+    int nVictoryText;
+    vector<sf::Text*> victoryText;
+public:
+    victoryMenu(const texture& textureList);
+    void draw(sf::RenderWindow& w);
+    int Switch(sf::RenderWindow& w);
+    ~victoryMenu();
 };
 
 #endif
