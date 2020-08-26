@@ -28,8 +28,8 @@ int main()
     //Init game status
     mainMenu mainM(textureManager);
     gameStates status;
-    float level = 1;
-    const float maxLevel = 5;
+    int level = 1;
+    const int maxLevel = 5;
     //Start game clock
     sf::Clock gameClock;
     sf::Clock frameClock;
@@ -82,15 +82,19 @@ int main()
                     traffics.update(lastElapse, gameTime);
                     animals.update(lastElapse, gameTime);
                     //Logic phase
-                    if (player.isImpact(&traffics) || player.isImpact(&animals))
+                    if (player.isImpact(&traffics) || player.isImpact(&animals)) {
                         cout << "Vehicle or Animal hit you!" << endl;
-                    if (player.isDead()) {
                         cout << "You died!" << endl;
                         status.isOver = true;
                     }
                     if (player.reachedGoal()) {
                         cout << "To next level!" << endl;
-                        if (level < maxLevel) level += 0.5;
+                        if (level < maxLevel) {
+                            level++;
+                            player.resetStatus();
+                            traffics.UpLevel();
+                            
+                        }
                         else status.isOver = true;
                     }
                 }
@@ -104,8 +108,8 @@ int main()
 
                 //New frame time
                 lastElapse = frameClock.restart().asSeconds();
-                /*cout << "Frame time: " << lastElapse << endl;
-                cout << "FPS: " << 1 / lastElapse << endl;*/
+                cout << "Frame time: " << lastElapse << endl;
+                cout << "FPS: " << 1 / lastElapse << endl;
 
                 if (gameTime < 0.1)
                     lastElapse *= 60;

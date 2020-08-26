@@ -16,12 +16,14 @@ public:
 	bool isImpact(AnimalManager*);
 	bool isDead() const;
 	bool reachedGoal() const;
+	void resetStatus();
 	//sf::FloatRect getBound() const;
-	sf::Vector2f getPosition() const;
+	//sf::Vector2f getPosition() const;
 private:
 	float x, y;
 	sf::Sprite playerSprite;
 	bool state; //0 = dead, 1 = alive
+	sf::Clock cooldown;
 };
 
 #endif // !PLAYER_H

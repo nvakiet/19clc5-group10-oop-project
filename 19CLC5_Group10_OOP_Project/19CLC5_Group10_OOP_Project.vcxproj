@@ -22,6 +22,7 @@
     <ClCompile Include="src\Animal.cpp" />
     <ClCompile Include="src\AnimalLane.cpp" />
     <ClCompile Include="src\AnimalLaneManager.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\menu.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="headers\Animal.h" />
     <ClInclude Include="headers\AnimalLane.h" />
     <ClInclude Include="headers\AnimalLaneManager.h" />
+    <ClInclude Include="headers\Animation.h" />
     <ClInclude Include="headers\menu.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\textureLoad.h" />

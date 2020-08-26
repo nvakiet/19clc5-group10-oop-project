@@ -11,23 +11,32 @@ Player::Player(const sf::Texture& playerTexture) : state(1), x(400), y(575) {
 void Player::move(const sf::Event& event, const float& frameTime) {
 	if (event.type == sf::Event::KeyPressed) {
 		switch (event.key.code) {
+			//Check if the player will move out of screen or is still on cooldown, if not then allow to move
 		case sf::Keyboard::Up:
-			if (playerSprite.getPosition().y - 150 * frameTime > 0)
-				y -= 150 * frameTime;
+			if (playerSprite.getPosition().y - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+				y -= /*150 * frameTime*/ 50;
+				cooldown.restart();
+			}
 			break;
 		case sf::Keyboard::Down:
-			if (playerSprite.getPosition().y + 150 * frameTime < 600)
-				y += 150 * frameTime;
+			if (playerSprite.getPosition().y + /*150 * frameTime*/ 50 < 600 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+				y += /*150 * frameTime*/ 50;
+				cooldown.restart();
+			}
 			break;
 		case sf::Keyboard::Left:
-			if (playerSprite.getPosition().x - 150 * frameTime > 0)
-				x -= 150 * frameTime;
-			playerSprite.setScale(-0.1f, 0.1f);
+			if (playerSprite.getPosition().x - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+				x -= /*150 * frameTime*/ 50;
+				playerSprite.setScale(-0.1f, 0.1f);
+				cooldown.restart();
+			}
 			break;
 		case sf::Keyboard::Right:
-			if (playerSprite.getPosition().x + 150 * frameTime < 800)
-				x += 150 * frameTime;
-			playerSprite.setScale(0.1f, 0.1f);
+			if (playerSprite.getPosition().x + /*150 * frameTime*/ 50 < 800 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+				x += /*150 * frameTime*/ 50;
+				playerSprite.setScale(0.1f, 0.1f);
+				cooldown.restart();
+			}
 			break;
 		}
 		playerSprite.setPosition(x, y);
@@ -43,7 +52,6 @@ bool Player::isDead() const {
 }
 
 bool Player::reachedGoal() const {
-	float y = playerSprite.getPosition().y;
 	return y <= 50;
 }
 
@@ -51,9 +59,9 @@ bool Player::reachedGoal() const {
 //	return playerSprite.getGlobalBounds();
 //}
 
-sf::Vector2f Player::getPosition() const {
-	return playerSprite.getPosition();
-}
+//sf::Vector2f Player::getPosition() const {
+//	return playerSprite.getPosition();
+//}
 
 bool Player::isImpact(trafficmanager* traffics) {
 	if (traffics->checkCollosion(playerSprite.getGlobalBounds(), y)) {
@@ -69,4 +77,11 @@ bool Player::isImpact(AnimalManager* animals) {
 		return true;
 	}
 	else return false;
+}
+
+void Player::resetStatus() {
+	state = 1;
+	x = 400;
+	y = 575;
+	cooldown.restart();
 }

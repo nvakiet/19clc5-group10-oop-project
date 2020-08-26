@@ -129,6 +129,12 @@ texture::~texture()
 {
 	for (int i = 0; i < animal.size(); i++) delete animal[i];
 	animal.clear();
+	for (int i = 0; i < CatAnimation.size(); i++) delete CatAnimation[i];
+	CatAnimation.clear();
+	for (int i = 0; i < DogAnimation.size(); i++) delete DogAnimation[i];
+	DogAnimation.clear();
+	for (int i = 0; i < DinoAnimation.size(); i++) delete DinoAnimation[i];
+	DinoAnimation.clear();
 	for (int i = 0; i < vehicle.size(); i++) delete vehicle[i];
 	vehicle.clear();
 	for (int i = 0; i < player.size(); i++) delete player[i];
