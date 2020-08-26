@@ -59,6 +59,8 @@ texture::texture()
 	}
 	background = new sf::Texture;
 	background->loadFromFile("images/textures/BG.png", sf::IntRect(0, 0, 800, 600));
+	igBackground = new sf::Texture;
+	igBackground->loadFromFile("images/textures/igBG.png", sf::IntRect(0, 0, 800, 600));
 	title = new sf::Texture;
 	title->loadFromFile("images/textures/Road.png", sf::IntRect(0, 0, 800, 250));
 	selected = new sf::Texture;
@@ -77,6 +79,7 @@ texture::~texture()
 	for (int i = 0; i < player.size(); i++) delete player[i];
 	player.clear();
 	delete background;
+	delete igBackground;
 	delete title;
 	delete selected;
 	delete traffic;

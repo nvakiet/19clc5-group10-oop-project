@@ -14,6 +14,7 @@ public:
 	vector<sf::Texture*> animal;
 	vector<sf::Texture*> vehicle;
 	sf::Texture* background;
+	sf::Texture* igBackground;
 	sf::Texture* title;
 	sf::Texture* selected;
 	sf::Texture* traffic;
