@@ -13,6 +13,10 @@ public:
 	vector<sf::Texture*> player;
 	vector<sf::Texture*> animal;
 	vector<sf::Texture*> vehicle;
+	vector< vector<sf::Texture*> > animation;
+	vector<sf::Texture*> CatAnimation;
+	vector<sf::Texture*> DogAnimation;
+	vector<sf::Texture*> DinoAnimation;
 	sf::Texture* background;
 	sf::Texture* igBackground;
 	sf::Texture* title;
