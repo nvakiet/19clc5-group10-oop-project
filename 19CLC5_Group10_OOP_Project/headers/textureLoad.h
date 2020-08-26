@@ -17,6 +17,7 @@ public:
 	sf::Texture* title;
 	sf::Texture* selected;
 	sf::Texture* traffic;
+	sf::Texture* trafficlight;
 
 	texture();
 	~texture();

@@ -9,6 +9,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <iomanip>
+#include "textureLoad.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ public:
     bool m_status; //on or off|   true that car can run
     sf::RectangleShape m_rectBox;
 
-    trafficlight(double mXpos, double mYpos, double length, double width,double level);
+    trafficlight(double mXpos, double mYpos, double length, double width,double level,texture &a);
     void update(double fGameTime);
     void draw(sf::RenderWindow &window);
     double getNextStop();

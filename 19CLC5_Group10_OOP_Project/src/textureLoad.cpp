@@ -65,6 +65,8 @@ texture::texture()
 	selected->loadFromFile("images/textures/selected.png", sf::IntRect(0, 0, 800, 48));
 	traffic = new sf::Texture;
 	traffic->loadFromFile("images/textures/traffic.png", sf::IntRect(0, 0, 40, 40));
+	trafficlight = new sf::Texture;
+	trafficlight->loadFromFile("images/textures/traffic.png");
 }
 texture::~texture()
 {

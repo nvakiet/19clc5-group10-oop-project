@@ -9,13 +9,13 @@ trafficmanager::trafficmanager(texture &textureManager)
     {
         if (rand()%2==0)
         {
-            m_vland.push_back(trafficlane(-100,magic[i],100,1,3,m_car));
-            m_light.push_back(trafficlight(750,magic[i],40,40,3));
+            m_vland.push_back(trafficlane(-100,magic[i],100,1,m_level,m_car));
+            m_light.push_back(trafficlight(750,magic[i],40,40,m_level,textureManager));
         }
         else
         {
-            m_vland.push_back(trafficlane(900,magic[i],100,-1,3,m_car));
-            m_light.push_back(trafficlight(0,magic[i],40,40,3));
+            m_vland.push_back(trafficlane(900,magic[i],100,-1,m_level,m_car));
+            m_light.push_back(trafficlight(0,magic[i],40,40,m_level,textureManager));
         }
 
     }
@@ -62,5 +62,22 @@ bool trafficmanager::checkCollosion(sf::FloatRect other)
 		}
 	}
 	return false;	// no collision
+}
+
+bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
+{
+    double magic[] = {100,200,350,450}; //position
+    for (int i = 0; i < m_vland.size(); i++){
+		if (magic[i]-60.0 <= fYpos && fYpos <= magic[i]+60.0 && m_vland[i].checkCollision(other))
+		{
+			return true;	// collision
+		}
+	}
+	return false;	// no collision
+}
+
+void trafficmanager::UpLevel()
+{
+    m_level+=10;
 }
 

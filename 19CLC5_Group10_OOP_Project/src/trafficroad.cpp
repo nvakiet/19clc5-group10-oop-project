@@ -8,7 +8,7 @@ trafficlane::trafficlane(double fXpos, double fYpos, double fWidth, double lands
     m_vptexTextures = textures;
     m_LaneSpeed = landspeed/abs(landspeed);
     m_level = level;
-    hack_speed = rand()%3*5*(m_level+1); //hack speed
+    hack_speed = (rand()%3+1)*5*(m_level+1); //hack speed
 }
 
 void trafficlane::draw(sf::RenderWindow &window)
@@ -34,7 +34,7 @@ void trafficlane::update(double elapsed, double fGameTime)
     {
         //set speed to cars
         double speed = 0;
-        double mg[]={70,80,85,100,150,100,150,200};
+        double mg[]={90,100,100,100,170,200,170,220};
         int countt=0;
 //        for (int i=0; i<k; i++)
 //        {
@@ -62,10 +62,13 @@ void trafficlane::update(double elapsed, double fGameTime)
 
 double trafficlane::getNextSpawn()
 {
-	float fMinTime; 	// Minimum time for a car to spawn
-	float fMaxTime;		// Maximum time for a car to spawn
-	fMinTime = 1;		// Distance of a vehicle plus size of the player
-	fMaxTime = 3+(6-m_level);	// Distance of 3 vehicles plus the size of the player
+    double magicmin[5] = {1, 1 , 0.5 , 0.1 , 0.2};
+    double magicmax[5] = {3, 1.5 , 1 , 1.5 , 0.5};
+	double fMinTime; 	// Minimum time for a car to spawn
+	double fMaxTime;		// Maximum time for a car to spawn
+	int tmp = min(m_level/10 , 5.0);
+    fMinTime = magicmin[tmp] ;
+    fMaxTime = magicmax[tmp] ;
 	return (fMinTime + (float) (rand()) / ( (float) (RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
 }
 
