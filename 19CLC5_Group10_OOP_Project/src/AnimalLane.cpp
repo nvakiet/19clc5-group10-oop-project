@@ -1,15 +1,15 @@
 #include "AnimalLane.h"
 
-AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int findex)
+AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures)
 {
     laneHeight = fYpos;
     laneXStart = fXpos;
     Width = fWidth;
     m_vptexTextures = textures;
+
     LaneSpeed = landspeed;
     this->level = level;
     number = getNumber();
-    index = findex;
 }
 void AnimalLane::draw(sf::RenderWindow& window)
 {
@@ -29,12 +29,12 @@ void AnimalLane::update(float elapsed, float fGameTime)
     ;
     if (fTimeSinceSpawn > NextSpawn)
     {
-        AnimalsInLane.push_back(animal((level*1.0/2) * LaneSpeed, laneXStart, laneHeight, Width, m_vptexTextures, index));
+        AnimalsInLane.push_back(animal((level*1.0/2) * LaneSpeed, laneXStart, laneHeight, Width, m_vptexTextures));
         spawnClock.restart();
         NextSpawn = getNextSpawn();
     }
 
-    
+
     // if ther is more than 10 animals in the lane then remove the earliest animal to have spawned
     if (AnimalsInLane.size() > 10)
     {
@@ -50,7 +50,7 @@ float AnimalLane::getNextSpawn()
     {
         fTempLaneSpeed = -LaneSpeed;
     }
-    else 
+    else
     {
         fTempLaneSpeed = LaneSpeed;
     }
@@ -65,7 +65,7 @@ float AnimalLane::getNextSpawn()
         time = (fMinTime + (float)(rand()) / ((float)(RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
         number--;
     }
-    else 
+    else
     {
         time = 2.5;
         number = getNumber();

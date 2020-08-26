@@ -3,11 +3,11 @@
 AnimalManager::AnimalManager(const texture& textureManager)
 {
 	land.clear();
-	animal = textureManager.animal;
-	land.push_back(AnimalLane(0, 50, 40, 110, 3, animal,1));
-	land.push_back(AnimalLane(800, 250, 40, -130, 3, animal,0));
-	land.push_back(AnimalLane(0, 300, 40, 120, 3, animal,1));
-	land.push_back(AnimalLane(800, 500, 40, -115, 3, animal,0));
+
+	land.push_back(AnimalLane(0, 50, 40, 110, 3, textureManager.DinoAnimation));
+	land.push_back(AnimalLane(800, 250, 40, -130, 3, textureManager.DogAnimation));
+	land.push_back(AnimalLane(0, 300, 40, 120, 3, textureManager.CatAnimation));
+	land.push_back(AnimalLane(800, 500, 40, -115, 3, textureManager.DinoAnimation));
 
 }
 

@@ -16,20 +16,17 @@ texture::texture()
 	}
 
 	//Load Cat,dog,dino animation
-	const int pic = 10;
+	const int pic = 8;
 	string animalcatAnimation[pic] =
 	{
-		"images/animations/catwalk/Walk (1).png",
-		"images/animations/catwalk/Walk (2).png",
-		"images/animations/catwalk/Walk (3).png",
-		"images/animations/catwalk/Walk (4).png",
-		"images/animations/catwalk/Walk (5).png",
-		"images/animations/catwalk/Walk (6).png",
-		"images/animations/catwalk/Walk (7).png",
-		"images/animations/catwalk/Walk (8).png",
-		"images/animations/catwalk/Walk (9).png",
-		"images/animations/catwalk/Walk (10).png",
-
+		"images/animations/catwalk/Run (1).png",
+		"images/animations/catwalk/Run (2).png",
+		"images/animations/catwalk/Run (3).png",
+		"images/animations/catwalk/Run (4).png",
+		"images/animations/catwalk/Run (5).png",
+		"images/animations/catwalk/Run (6).png",
+		"images/animations/catwalk/Run (7).png",
+		"images/animations/catwalk/Run (8).png",
 	};
 	for (int i = 0; i < pic; i++)
 	{
@@ -39,16 +36,14 @@ texture::texture()
 
 	string animaldogAnimation[pic] =
 	{
-		"images/animations/dogwalk/Walk (1).png",
-		"images/animations/dogwalk/Walk (2).png",
-		"images/animations/dogwalk/Walk (3).png",
-		"images/animations/dogwalk/Walk (4).png",
-		"images/animations/dogwalk/Walk (5).png",
-		"images/animations/dogwalk/Walk (6).png",
-		"images/animations/dogwalk/Walk (7).png",
-		"images/animations/dogwalk/Walk (8).png",
-		"images/animations/dogwalk/Walk (9).png",
-		"images/animations/dogwalk/Walk (10).png",
+		"images/animations/dogwalk/Run (1).png",
+		"images/animations/dogwalk/Run (2).png",
+		"images/animations/dogwalk/Run (3).png",
+		"images/animations/dogwalk/Run (4).png",
+		"images/animations/dogwalk/Run (5).png",
+		"images/animations/dogwalk/Run (6).png",
+		"images/animations/dogwalk/Run (7).png",
+		"images/animations/dogwalk/Run (8).png",
 
 	};
 	for (int i = 0; i < pic; i++)
@@ -73,10 +68,6 @@ texture::texture()
 		DinoAnimation.push_back(new sf::Texture);
 		DinoAnimation[i]->loadFromFile(animaldinoAnimation[i]);
 	}
-
-    animation.push_back(DinoAnimation);
-    animation.push_back(DogAnimation);
-    animation.push_back(CatAnimation);
 
 
 	const int nVehicle = 22;

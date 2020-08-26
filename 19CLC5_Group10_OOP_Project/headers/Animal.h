@@ -1,6 +1,7 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
+#include "Animation.h"
 #include <iostream>
 #include <vector>
 #include <SFML/Audio.hpp>
@@ -19,11 +20,11 @@ public:
     float fLength;
     float fWidth;
 
-    sf::RectangleShape m_rectBox;
+    Animation animal_animation;
     sf::Texture* animalTextures;
 
     //constructor
-    animal(float speed, float xPos, float yPos, float length, vector<sf::Texture*> textures, int findex);
+    animal(float speed, float xPos, float yPos, float length, vector<sf::Texture*> textures);
     void update(float elapsed);
     void draw(sf::RenderWindow& window);
     bool checkCollision(sf::FloatRect other);

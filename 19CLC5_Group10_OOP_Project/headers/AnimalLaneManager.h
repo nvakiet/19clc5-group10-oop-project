@@ -15,7 +15,7 @@
 class AnimalManager
 {
 private:
-    vector <sf::Texture*> animal;
+    vector<vector <sf::Texture*>> animal;
     vector <AnimalLane> land;
 
 public:

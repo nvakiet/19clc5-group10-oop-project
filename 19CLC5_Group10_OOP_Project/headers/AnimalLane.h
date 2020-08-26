@@ -23,7 +23,6 @@ private:
     float level;
     float fTimeSinceSpawn;
     int number;
-    int index;
 
     sf::Clock spawnClock;
 
@@ -31,7 +30,7 @@ private:
     vector<animal> AnimalsInLane;
 
 public:
-    AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures, int index);
+    AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures);
     void draw(sf::RenderWindow& window);
     void update(float elapsed, float fGameTime);
     float getNextSpawn();
