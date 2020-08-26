@@ -45,7 +45,7 @@ int main()
             trafficmanager traffics(textureManager);
             AnimalManager animals(textureManager);
             sf::Sprite background;
-            background.setTexture(*textureManager.background);
+            background.setTexture(*textureManager.igBackground);
             while (status.isInGame && !status.isOver)
             {
                 float gameTime = gameClock.getElapsedTime().asSeconds();

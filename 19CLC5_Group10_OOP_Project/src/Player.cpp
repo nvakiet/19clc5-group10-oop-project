@@ -56,7 +56,7 @@ sf::Vector2f Player::getPosition() const {
 }
 
 bool Player::isImpact(trafficmanager* traffics) {
-	if (traffics->checkCollosion(playerSprite.getGlobalBounds())) {
+	if (traffics->checkCollosion(playerSprite.getGlobalBounds(), y)) {
 		state = 0;
 		return true;
 	}
