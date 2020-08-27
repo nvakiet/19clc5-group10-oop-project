@@ -1,11 +1,7 @@
 #include <SFML/Graphics.hpp>
 //#include <SFML/Main.hpp>  //CURRENTLY IN CONSOLE MODE FOR DEBUGGING PURPOSE
 #include <iostream>
-#include "Player.h"
-#include "textureLoad.h"
-#include "trafficmanager.h"
-#include "AnimalLaneManager.h"
-#include "menu.h"
+
 
 
 struct gameStates {
@@ -24,7 +20,7 @@ int main()
 
     //Setup resource managers
     texture textureManager;
-
+    
     //Init game status
     mainMenu mainM(textureManager);
     gameStates status;
