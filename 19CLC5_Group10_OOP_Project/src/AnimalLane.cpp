@@ -9,6 +9,7 @@ AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, 
 
     LaneSpeed = landspeed;
     this->level = level;
+    landspeed+=this->level*2;
     number = getNumber();
 }
 void AnimalLane::draw(sf::RenderWindow& window)

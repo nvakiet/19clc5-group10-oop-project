@@ -17,7 +17,7 @@ class AnimalManager
 private:
     vector<vector <sf::Texture*>> animal;
     vector <AnimalLane> land;
-
+    int level = 3;
 public:
     AnimalManager(const texture& textureManager);
     //~AnimalManager();
@@ -25,6 +25,8 @@ public:
     void update(float elapsed, float gametime);
     void draw(sf::RenderWindow& window);
     bool checkCollosion(sf::FloatRect other);
+    bool checkCollosion(sf::FloatRect other, double fYpos);
+    void UpLevel();
 };
 
 #endif // AnimalManager_H

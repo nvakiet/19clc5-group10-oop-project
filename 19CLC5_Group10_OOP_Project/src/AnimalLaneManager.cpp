@@ -4,10 +4,10 @@ AnimalManager::AnimalManager(const texture& textureManager)
 {
 	land.clear();
 
-	land.push_back(AnimalLane(0, 50, 40, 110, 3, textureManager.DinoAnimation));
-	land.push_back(AnimalLane(800, 250, 40, -130, 3, textureManager.DogAnimation));
-	land.push_back(AnimalLane(0, 300, 40, 120, 3, textureManager.CatAnimation));
-	land.push_back(AnimalLane(800, 500, 40, -115, 3, textureManager.DinoAnimation));
+	land.push_back(AnimalLane(0, 50, 40, 110, level, textureManager.DinoAnimation));
+	land.push_back(AnimalLane(800, 250, 40, -130, level, textureManager.DogAnimation));
+	land.push_back(AnimalLane(0, 300, 40, 120, level, textureManager.CatAnimation));
+	land.push_back(AnimalLane(800, 500, 40, -115, level, textureManager.DinoAnimation));
 
 }
 
@@ -41,6 +41,23 @@ bool AnimalManager::checkCollosion(sf::FloatRect other)
 		}
 	}
 	return false;	// no collision
+}
+
+bool AnimalManager::checkCollosion(sf::FloatRect other, double fYpos)
+{
+    double magic[] = {50,250,300,500}; //position
+	for (int i = 0; i < land.size(); i++) {
+        if (magic[i]-60.0 <= fYpos && fYpos <= magic[i]+60.0 && land[i].checkCollision(other))
+		{
+			return true;	// collision
+		}
+	}
+	return false;	// no collision
+}
+
+void AnimalManager::UpLevel()
+{
+    level+=2;
 }
 
 
