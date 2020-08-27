@@ -8,8 +8,8 @@ sound::sound()
 	dogs->loadFromFile("sound/dogs.wav");
 	dinosaurs = new sf::SoundBuffer;
 	dinosaurs->loadFromFile("sound/dinosaurs.wav");
-	move = new sf::SoundBuffer;
-	move->loadFromFile("sound/move.wav");
+	moving = new sf::SoundBuffer;
+	moving->loadFromFile("sound/move.wav");
 	cars = new sf::SoundBuffer;
 	cars->loadFromFile("sound/cars.wav");
 	stop = new sf::SoundBuffer;
@@ -18,13 +18,19 @@ sound::sound()
 	menu->openFromFile("sound/menu.wav");
 	ingame = new sf::Music;
 	ingame->openFromFile("sound/traffic.wav");
+	catSound.setBuffer(*cats);
+	dogSound.setBuffer(*dogs);
+	dinosaurSound.setBuffer(*dinosaurs);
+	moveSound.setBuffer(*moving);
+	carSound.setBuffer(*cars);
+	stopSound.setBuffer(*stop);
 }
 sound::~sound()
 {
 	delete cats;
 	delete dogs;
 	delete dinosaurs;
-	delete move;
+	delete moving;
 	delete cars;
 	delete stop;
 	delete menu;

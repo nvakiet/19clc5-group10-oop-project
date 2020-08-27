@@ -129,7 +129,7 @@ pauseMenu::~pauseMenu()
     pauseText.clear();
 }
 
-settingsMenu::settingsMenu(const texture& textureList) :menu(textureList)
+settingsMenu::settingsMenu(const texture& textureList, int musicOption, int fsOption) :menu(textureList), musicOpt(musicOption), fullscreenOpt(fsOption)
 {
     nSettingsText = 4;
     for (int i = 0; i < nSettingsText; i++)
@@ -158,18 +158,16 @@ settingsMenu::settingsMenu(const texture& textureList) :menu(textureList)
     settingsText[0]->setFillColor(sf::Color::Yellow);
     settingsText[0]->setString("Settings");
     settingsText[0]->setPosition(325.f, 150.f);
-    settingsText[1]->setString("Music:");
+    settingsText[1]->setString("Sounds:");
     settingsText[1]->setPosition(200.f, 200.f);
-    musicOptText[0]->setString("On");
-    musicOptText[1]->setString("Off");
+    musicOptText[0]->setString("Off");
+    musicOptText[1]->setString("On");
     settingsText[2]->setString("Fullscreen:");
     settingsText[2]->setPosition(200.f, 250.f);
     fullscreenOptText[0]->setString("Off");
     fullscreenOptText[1]->setString("On");
     settingsText[3]->setString("Back");
     settingsText[3]->setPosition(360.f, 300.f);
-    musicOpt = 0;
-    fullscreenOpt = 0;
 }
 void settingsMenu::draw(sf::RenderWindow& w)
 {

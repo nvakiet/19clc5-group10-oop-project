@@ -53,7 +53,7 @@ private:
     vector<sf::Text*> fullscreenOptText;
     int musicOpt, fullscreenOpt;
 public:
-    settingsMenu(const texture& textureList);
+    settingsMenu(const texture& textureList, int = 0, int = 0);
     void draw(sf::RenderWindow& w);
     int Switch(sf::RenderWindow& w);
     int getMusicOpt();
