@@ -2,18 +2,14 @@
 
 sound::sound()
 {
-	const int nAnimal = 3;
-	string animalSound[nAnimal] =
-	{
-		"sound/cats.wav",
-		"sound/dogs.wav",
-		"sound/dinosaurs.wav",
-	};
-	for (int i = 0; i < nAnimal; i++)
-	{
-		animal.push_back(new sf::SoundBuffer);
-		animal[i]->loadFromFile(animalSound[i]);
-	}
+	cats = new sf::SoundBuffer;
+	cats->loadFromFile("sound/cats.wav");
+	dogs = new sf::SoundBuffer;
+	dogs->loadFromFile("sound/dogs.wav");
+	dinosaurs = new sf::SoundBuffer;
+	dinosaurs->loadFromFile("sound/dinosaurs.wav");
+	move = new sf::SoundBuffer;
+	move->loadFromFile("sound/move.wav");
 	menu = new sf::Music;
 	menu->openFromFile("sound/menu.wav");
 	ingame = new sf::Music;
@@ -21,8 +17,10 @@ sound::sound()
 }
 sound::~sound()
 {
-	for (int i = 0; i < animal.size(); i++) delete animal[i];
-	animal.clear();
+	delete cats;
+	delete dogs;
+	delete dinosaurs;
+	delete move;
 	delete menu;
 	delete ingame;
 }

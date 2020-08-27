@@ -11,7 +11,11 @@ using namespace std;
 class sound
 {
 public:
-	vector<sf::SoundBuffer*> animal;
+	sf::SoundBuffer* cats;
+	sf::SoundBuffer* dogs;
+	sf::SoundBuffer* dinosaurs;
+	sf::SoundBuffer* move;
+
 	sf::Music* menu;
 	sf::Music* ingame;
 
