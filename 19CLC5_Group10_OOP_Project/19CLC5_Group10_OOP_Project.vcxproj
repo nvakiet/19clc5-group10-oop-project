@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="soundLoad.cpp" />
     <ClCompile Include="src\Animal.cpp" />
     <ClCompile Include="src\AnimalLane.cpp" />
     <ClCompile Include="src\AnimalLaneManager.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="headers\trafficmanager.h" />
     <ClInclude Include="headers\trafficroad.h" />
     <ClInclude Include="headers\vehicle.h" />
+    <ClInclude Include="soundLoad.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
