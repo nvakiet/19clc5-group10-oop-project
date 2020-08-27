@@ -19,10 +19,12 @@ public:
 	sf::Sound stopSound;
 	sf::Music* menu;
 	sf::Music* ingame;
-
+	void setAllVolumes(float vol);
+	float getAllVolumes() const;
 	sound();
 	~sound();
 private:
+	float universalVolume;
 	sf::SoundBuffer* cats;
 	sf::SoundBuffer* dogs;
 	sf::SoundBuffer* dinosaurs;

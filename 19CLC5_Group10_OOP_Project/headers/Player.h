@@ -2,14 +2,15 @@
 #define PLAYER_H
 
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
 using namespace std;
 
 class trafficmanager;
 class AnimalManager;
 class Player {
 public:
-	Player(const sf::Texture&);
+	Player(const sf::Texture&, const sf::Sound&);
 	void move(const sf::Event&, const float&);
 	void draw(sf::RenderWindow&) const;
 	bool isImpact(trafficmanager*);
@@ -18,10 +19,11 @@ public:
 	bool reachedGoal() const;
 	void resetStatus();
 	//sf::FloatRect getBound() const;
-	//sf::Vector2f getPosition() const;
+	sf::Vector2f getPosition() const;
 private:
 	float x, y;
 	sf::Sprite playerSprite;
+	sf::Sound movementSound;
 	bool state; //0 = dead, 1 = alive
 	sf::Clock cooldown;
 };

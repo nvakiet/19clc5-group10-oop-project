@@ -13,14 +13,16 @@
 
 class GameState {
 public:
-	virtual GameState* handleInput(const sf::RenderWindow&) = 0;
+	//The pointers shall be deleted at client code
+	virtual GameState* handleInput(sf::RenderWindow&) = 0;
 	virtual void update() = 0;
 	virtual GameState* handleLogic() = 0;
-	virtual void draw(const sf::RenderWindow&) = 0;
+	virtual void draw(sf::RenderWindow&) = 0;
 	virtual ~GameState() = default;
 protected:
 	static texture textureManager;
 	static sound soundManager;
+	//0 = Off, 1 = On
 	static int musicOption;
 	static int fullscreenOption;
 };
@@ -31,11 +33,11 @@ int GameState::fullscreenOption = 0;
 
 class MainMenuState : public GameState {
 public:
-	//Load 2 options when starting game
-	MainMenuState(int, int);
+	//Load 2 options when starting or switch back to this state
+	MainMenuState(sf::RenderWindow&, int = 1, int = 0);
 
 	//Switch to 2 state: PlayingState(with or without saved data), SettingsState
-	GameState* handleInput(const sf::RenderWindow&) override;
+	GameState* handleInput(sf::RenderWindow&) override;
 	
 	//No need in this state
 	void update() override {};
@@ -43,8 +45,8 @@ public:
 	//No need in this state
 	GameState* handleLogic() override { return nullptr; }
 	
-	void draw(const sf::RenderWindow&) override;
-	~MainMenuState() = default;
+	void draw(sf::RenderWindow&) override;
+	~MainMenuState();
 private:
 	mainMenu gameMenu;
 };
@@ -52,19 +54,20 @@ private:
 class SettingsState : public GameState {
 public:
 	//Receive 2 options from MainMenu
-	SettingsState() : gameMenu(textureManager, musicOption, fullscreenOption) {};
-	
+	SettingsState();
+
 	//Switch back to main menu or continue in this state to update options
-	GameState* handleInput(const sf::RenderWindow&) override; 
-	
 	//Switch the window fullscreen mode, mute or unmute sounds
-	void update() override; 
+	GameState* handleInput(sf::RenderWindow&) override;
+
+	//No need in this state
+	void update() override {};
 	
 	//No need in this state
 	GameState* handleLogic() override { return nullptr; }
 	
-	void draw(const sf::RenderWindow&) override;
-	~SettingsState() = default;
+	void draw(sf::RenderWindow&) override;
+	~SettingsState();
 private:
 	settingsMenu gameMenu;
 };
@@ -75,7 +78,7 @@ public:
 	PlayingState(int = 1, float = 0, long int = 0);
 	
 	//Switch to PausingState or MainMenuState or Close the window
-	GameState* handleInput(const sf::RenderWindow&) override;
+	GameState* handleInput(sf::RenderWindow&) override;
 	
 	//Update player's, traffics' and animals' positions, new score and playTime
 	void update() override;
@@ -83,8 +86,8 @@ public:
 	//Check impacts, living or dying, then either continue to new level or switch to VictoryState or LoseState
 	GameState* handleLogic() override;
 	
-	void draw(const sf::RenderWindow&) override;
-	~PlayingState() = default;
+	void draw(sf::RenderWindow&) override;
+	~PlayingState();
 private:
 	int level;
 	const int maxLevel;

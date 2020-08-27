@@ -1,11 +1,12 @@
 #include "Player.h"
 #include "trafficmanager.h"
 #include "AnimalLaneManager.h"
-Player::Player(const sf::Texture& playerTexture) : state(1), x(400), y(575) {
+Player::Player(const sf::Texture& playerTexture, const sf::Sound& moveSound) : state(1), x(400), y(575) {
 	playerSprite.setTexture(playerTexture); //Player texture is a rectangle size 400 x 500
 	playerSprite.setScale(0.1f, 0.1f);
 	playerSprite.setOrigin(playerSprite.getTextureRect().width * 0.5f, playerSprite.getTextureRect().height * 0.5f);
 	playerSprite.setPosition(400, 575);
+	movementSound = moveSound;
 }
 
 void Player::move(const sf::Event& event, const float& frameTime) {
@@ -15,12 +16,14 @@ void Player::move(const sf::Event& event, const float& frameTime) {
 		case sf::Keyboard::Up:
 			if (playerSprite.getPosition().y - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
 				y -= /*150 * frameTime*/ 50;
+				movementSound.play();
 				cooldown.restart();
 			}
 			break;
 		case sf::Keyboard::Down:
 			if (playerSprite.getPosition().y + /*150 * frameTime*/ 50 < 600 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
 				y += /*150 * frameTime*/ 50;
+				movementSound.play();
 				cooldown.restart();
 			}
 			break;
@@ -28,6 +31,7 @@ void Player::move(const sf::Event& event, const float& frameTime) {
 			if (playerSprite.getPosition().x - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
 				x -= /*150 * frameTime*/ 50;
 				playerSprite.setScale(-0.1f, 0.1f);
+				movementSound.play();
 				cooldown.restart();
 			}
 			break;
@@ -35,6 +39,7 @@ void Player::move(const sf::Event& event, const float& frameTime) {
 			if (playerSprite.getPosition().x + /*150 * frameTime*/ 50 < 800 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
 				x += /*150 * frameTime*/ 50;
 				playerSprite.setScale(0.1f, 0.1f);
+				movementSound.play();
 				cooldown.restart();
 			}
 			break;
@@ -59,9 +64,9 @@ bool Player::reachedGoal() const {
 //	return playerSprite.getGlobalBounds();
 //}
 
-//sf::Vector2f Player::getPosition() const {
-//	return playerSprite.getPosition();
-//}
+sf::Vector2f Player::getPosition() const {
+	return playerSprite.getPosition();
+}
 
 bool Player::isImpact(trafficmanager* traffics) {
 	if (traffics->checkCollosion(playerSprite.getGlobalBounds(), y)) {

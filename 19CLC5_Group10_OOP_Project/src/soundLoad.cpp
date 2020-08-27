@@ -24,7 +24,25 @@ sound::sound()
 	moveSound.setBuffer(*moving);
 	carSound.setBuffer(*cars);
 	stopSound.setBuffer(*stop);
+	setAllVolumes(100);
 }
+
+void sound::setAllVolumes(float vol){
+	universalVolume = vol;
+	catSound.setVolume(universalVolume);
+	dogSound.setVolume(universalVolume);
+	dinosaurSound.setVolume(universalVolume);
+	moveSound.setVolume(universalVolume);
+	carSound.setVolume(universalVolume);
+	stopSound.setVolume(universalVolume);
+	menu->setVolume(universalVolume);
+	ingame->setVolume(universalVolume);
+}
+
+float sound::getAllVolumes() const {
+	return universalVolume;
+}
+
 sound::~sound()
 {
 	delete cats;
