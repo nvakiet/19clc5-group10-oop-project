@@ -10,6 +10,10 @@ sound::sound()
 	dinosaurs->loadFromFile("sound/dinosaurs.wav");
 	move = new sf::SoundBuffer;
 	move->loadFromFile("sound/move.wav");
+	cars = new sf::SoundBuffer;
+	cars->loadFromFile("sound/cars.wav");
+	stop = new sf::SoundBuffer;
+	stop->loadFromFile("sound/stop.wav");
 	menu = new sf::Music;
 	menu->openFromFile("sound/menu.wav");
 	ingame = new sf::Music;
@@ -21,6 +25,8 @@ sound::~sound()
 	delete dogs;
 	delete dinosaurs;
 	delete move;
+	delete cars;
+	delete stop;
 	delete menu;
 	delete ingame;
 }

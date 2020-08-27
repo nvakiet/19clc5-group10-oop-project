@@ -15,7 +15,8 @@ public:
 	sf::SoundBuffer* dogs;
 	sf::SoundBuffer* dinosaurs;
 	sf::SoundBuffer* move;
-
+	sf::SoundBuffer* cars;
+	sf::SoundBuffer* stop;
 	sf::Music* menu;
 	sf::Music* ingame;
 
