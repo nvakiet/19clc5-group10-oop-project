@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="src\Animal.cpp" />
     <ClCompile Include="src\AnimalLane.cpp" />
     <ClCompile Include="src\AnimalLaneManager.cpp" />
@@ -35,7 +34,6 @@
     <ClCompile Include="src\vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h" />
     <ClInclude Include="headers\Animal.h" />
     <ClInclude Include="headers\AnimalLane.h" />
     <ClInclude Include="headers\AnimalLaneManager.h" />

@@ -1,7 +1,13 @@
-#include <SFML/Graphics.hpp>
 //#include <SFML/Main.hpp>  //CURRENTLY IN CONSOLE MODE FOR DEBUGGING PURPOSE
 #include <iostream>
-
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "textureLoad.h"
+#include "soundLoad.h"
+#include "Player.h"
+#include "trafficmanager.h"
+#include "AnimalLaneManager.h"
+#include "menu.h"
 
 
 struct gameStates {
@@ -20,7 +26,7 @@ int main()
 
     //Setup resource managers
     texture textureManager;
-    
+    sound soundManager;
     //Init game status
     mainMenu mainM(textureManager);
     gameStates status;
@@ -37,7 +43,7 @@ int main()
         if (choice == 0) {
             //Init game components
             status.isInGame = true;
-            Player player(*textureManager.player[0]);
+            Player player(*textureManager.player[0], soundManager.moveSound);
             trafficmanager traffics(textureManager);
             AnimalManager animals(textureManager);
             sf::Sprite background;

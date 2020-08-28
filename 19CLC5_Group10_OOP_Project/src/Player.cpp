@@ -11,24 +11,25 @@ Player::Player(const sf::Texture& playerTexture, const sf::Sound& moveSound) : s
 
 void Player::move(const sf::Event& event, const float& frameTime) {
 	if (event.type == sf::Event::KeyPressed) {
+		float cdTime = 0.3f;
 		switch (event.key.code) {
 			//Check if the player will move out of screen or is still on cooldown, if not then allow to move
 		case sf::Keyboard::Up:
-			if (playerSprite.getPosition().y - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+			if (playerSprite.getPosition().y - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > cdTime) {
 				y -= /*150 * frameTime*/ 50;
 				movementSound.play();
 				cooldown.restart();
 			}
 			break;
 		case sf::Keyboard::Down:
-			if (playerSprite.getPosition().y + /*150 * frameTime*/ 50 < 600 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+			if (playerSprite.getPosition().y + /*150 * frameTime*/ 50 < 600 && cooldown.getElapsedTime().asSeconds() > cdTime) {
 				y += /*150 * frameTime*/ 50;
 				movementSound.play();
 				cooldown.restart();
 			}
 			break;
 		case sf::Keyboard::Left:
-			if (playerSprite.getPosition().x - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+			if (playerSprite.getPosition().x - /*150 * frameTime*/ 50 > 0 && cooldown.getElapsedTime().asSeconds() > cdTime) {
 				x -= /*150 * frameTime*/ 50;
 				playerSprite.setScale(-0.1f, 0.1f);
 				movementSound.play();
@@ -36,7 +37,7 @@ void Player::move(const sf::Event& event, const float& frameTime) {
 			}
 			break;
 		case sf::Keyboard::Right:
-			if (playerSprite.getPosition().x + /*150 * frameTime*/ 50 < 800 && cooldown.getElapsedTime().asSeconds() > 0.25f) {
+			if (playerSprite.getPosition().x + /*150 * frameTime*/ 50 < 800 && cooldown.getElapsedTime().asSeconds() > cdTime) {
 				x += /*150 * frameTime*/ 50;
 				playerSprite.setScale(0.1f, 0.1f);
 				movementSound.play();
@@ -77,7 +78,7 @@ bool Player::isImpact(trafficmanager* traffics) {
 }
 
 bool Player::isImpact(AnimalManager* animals) {
-	if (animals->checkCollosion(playerSprite.getGlobalBounds())) {
+	if (animals->checkCollosion(playerSprite.getGlobalBounds(), y)) {
 		state = 0;
 		return true;
 	}
