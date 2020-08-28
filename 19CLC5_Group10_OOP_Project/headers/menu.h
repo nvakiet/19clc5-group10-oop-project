@@ -49,6 +49,8 @@ class settingsMenu :public menu
 private:
     int nSettingsText;
     vector<sf::Text*> settingsText;
+    vector<sf::Sprite*> musicButton;
+    vector<sf::Sprite*> fullscreenButton;
     vector<sf::Text*> musicOptText;
     vector<sf::Text*> fullscreenOptText;
     int musicOpt, fullscreenOpt;

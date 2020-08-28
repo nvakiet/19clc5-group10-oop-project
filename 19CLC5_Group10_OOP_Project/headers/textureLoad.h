@@ -16,6 +16,7 @@ public:
 	vector<sf::Texture*> CatAnimation;
 	vector<sf::Texture*> DogAnimation;
 	vector<sf::Texture*> DinoAnimation;
+	vector<sf::Texture*> button;
 	sf::Texture* background;
 	sf::Texture* igBackground;
 	sf::Texture* title;

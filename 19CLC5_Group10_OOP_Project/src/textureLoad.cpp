@@ -112,6 +112,19 @@ texture::texture()
 		player.push_back(new sf::Texture);
 		player[i]->loadFromFile(playerDirectory[i]);
 	}
+
+	const int nButton = 2;
+	string buttonDirectory[nButton] =
+	{
+		"images/textures/buttons/left.png",
+		"images/textures/buttons/right.png"
+	};
+	for (int i = 0; i < nButton; i++)
+	{
+		button.push_back(new sf::Texture);
+		button[i]->loadFromFile(buttonDirectory[i]);
+	}
+
 	background = new sf::Texture;
 	background->loadFromFile("images/textures/BG.png", sf::IntRect(0, 0, 800, 600));
 	igBackground = new sf::Texture;
@@ -139,6 +152,8 @@ texture::~texture()
 	vehicle.clear();
 	for (int i = 0; i < player.size(); i++) delete player[i];
 	player.clear();
+	for (int i = 0; i < button.size(); i++) delete button[i];
+	button.clear();
 	delete background;
 	delete igBackground;
 	delete title;

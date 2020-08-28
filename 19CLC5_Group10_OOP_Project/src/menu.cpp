@@ -131,6 +131,22 @@ pauseMenu::~pauseMenu()
 
 settingsMenu::settingsMenu(const texture& textureList, int musicOption, int fsOption) :menu(textureList), musicOpt(musicOption), fullscreenOpt(fsOption)
 {
+    for (int i = 0; i < 2; i++)
+    {
+        musicButton.push_back(new sf::Sprite);
+        musicButton[i]->setTexture(*textureList.button[i]);
+        musicButton[i]->setScale(0.18f, 0.18f);
+    }
+    musicButton[0]->setPosition(510.f, 208.f);
+    musicButton[1]->setPosition(615.f, 208.f);
+    for (int i = 0; i < 2; i++)
+    {
+        fullscreenButton.push_back(new sf::Sprite);
+        fullscreenButton[i]->setTexture(*textureList.button[i]);
+        fullscreenButton[i]->setScale(0.18f, 0.18f);
+    }
+    fullscreenButton[0]->setPosition(510.f, 258.f);
+    fullscreenButton[1]->setPosition(615.f, 258.f);
     nSettingsText = 4;
     for (int i = 0; i < nSettingsText; i++)
     {
@@ -172,7 +188,7 @@ settingsMenu::settingsMenu(const texture& textureList, int musicOption, int fsOp
 void settingsMenu::draw(sf::RenderWindow& w)
 {
     title.setPosition(sf::Vector2f(0.f, 150.f));
-    //w.draw(bg);
+    w.draw(bg);
     w.draw(title);
     if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 202.f));
     else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
@@ -181,6 +197,8 @@ void settingsMenu::draw(sf::RenderWindow& w)
     for (int i = 0; i < nSettingsText; i++) w.draw(*settingsText[i]);
     w.draw(*musicOptText[musicOpt]);
     w.draw(*fullscreenOptText[fullscreenOpt]);
+    for (int i = 0; i < 2; i++) w.draw(*musicButton[i]);
+    for (int i = 0; i < 2; i++) w.draw(*fullscreenButton[i]);
 }
 int settingsMenu::Switch(sf::RenderWindow& w)
 {
@@ -198,25 +216,29 @@ int settingsMenu::Switch(sf::RenderWindow& w)
         {
             pVertical += 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 0 && musicOpt == 0)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 0)
         {
             musicOpt += 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 0 && musicOpt == 1)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 0)
         {
             musicOpt -= 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 1 && fullscreenOpt == 0)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 1)
         {
             fullscreenOpt += 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 1 && fullscreenOpt == 1)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 1)
         {
             fullscreenOpt -= 1;
         }
         if (pVertical == nSettingsText - 1) pVertical = 0;
         if (pVertical == -1) pVertical = nSettingsText - 2;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
+        if (musicOpt == 2) musicOpt = 0;
+        if (musicOpt == -1) musicOpt = 1;
+        if (fullscreenOpt == 2) fullscreenOpt = 0;
+        if (fullscreenOpt == -1) fullscreenOpt = 1;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && pVertical == 2) return pVertical;
         //Back = return 2
     }
     return -1;
@@ -235,12 +257,15 @@ settingsMenu::~settingsMenu()
     settingsText.clear();
     for (int i = 0; i < 2; i++)
     {
+        delete musicButton[i];
+        delete fullscreenButton[i];
         delete musicOptText[i];
         delete fullscreenOptText[i];
     }
+    musicButton.clear();
+    fullscreenButton.clear();
     musicOptText.clear();
     fullscreenOptText.clear();
-}
 
 loseMenu::loseMenu(const texture& textureList) :menu(textureList)
 {
