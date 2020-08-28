@@ -32,7 +32,7 @@ void mainMenu::draw(sf::RenderWindow& w)
     title.setPosition(sf::Vector2f(0.f, 150.f));
     w.draw(bg);
     w.draw(title);
-    if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 202.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 202.f));
     else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
     else selected.setPosition(sf::Vector2f(0.f, 302.f));
     w.draw(selected);
@@ -43,20 +43,20 @@ int mainMenu::Switch(sf::RenderWindow& w)
     sf::Event event;
     while (w.pollEvent(event))
     {
-        if (pVertical == -1) pVertical = 0;
         if (event.type == sf::Event::Closed)
             w.close();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
+        if (pVertical == -1) pVertical = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             pVertical -= 1;
+            if (pVertical == -1) pVertical = nMainText - 1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             pVertical += 1;
+            if (pVertical == nMainText) pVertical = 0;
         }
-        if (pVertical == nMainText) pVertical = 0;
-        if (pVertical == -1) pVertical = nMainText - 1;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
     }
     return -1;
 }
@@ -94,7 +94,7 @@ void pauseMenu::draw(sf::RenderWindow& w)
     title.setPosition(sf::Vector2f(0.f, 150.f));
     //w.draw(bg);
     w.draw(title);
-    if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 202.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 202.f));
     else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
     else if (pVertical == 2) selected.setPosition(sf::Vector2f(0.f, 302.f));
     else selected.setPosition(sf::Vector2f(0.f, 352.f));
@@ -106,20 +106,20 @@ int pauseMenu::Switch(sf::RenderWindow& w)
     sf::Event event;
     while (w.pollEvent(event))
     {
-        if (pVertical == -1) pVertical = 0;
         if (event.type == sf::Event::Closed)
             w.close();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
+        if (pVertical == -1) pVertical = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             pVertical -= 1;
+            if (pVertical == -1) pVertical = nPauseText - 2;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             pVertical += 1;
+            if (pVertical == nPauseText - 1) pVertical = 0;
         }
-        if (pVertical == nPauseText - 1) pVertical = 0;
-        if (pVertical == -1) pVertical = nPauseText - 2;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
     }
     return -1;
 }
@@ -190,7 +190,7 @@ void settingsMenu::draw(sf::RenderWindow& w)
     title.setPosition(sf::Vector2f(0.f, 150.f));
     w.draw(bg);
     w.draw(title);
-    if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 202.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 202.f));
     else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
     else selected.setPosition(sf::Vector2f(0.f, 302.f));
     w.draw(selected);
@@ -205,40 +205,44 @@ int settingsMenu::Switch(sf::RenderWindow& w)
     sf::Event event;
     while (w.pollEvent(event))
     {
-        if (pVertical == -1) pVertical = 0;
         if (event.type == sf::Event::Closed)
             w.close();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
+        if (pVertical == -1) pVertical = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             pVertical -= 1;
+            if (pVertical == -1) pVertical = nSettingsText - 2;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             pVertical += 1;
+            if (pVertical == nSettingsText - 1) pVertical = 0;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 0)
         {
             musicOpt += 1;
+            if (musicOpt == 2) musicOpt = 0;
+            return pVertical;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 0)
         {
             musicOpt -= 1;
+            if (musicOpt == -1) musicOpt = 1;
+            return pVertical;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && pVertical == 1)
         {
             fullscreenOpt += 1;
+            if (fullscreenOpt == 2) fullscreenOpt = 0;
+            return pVertical;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && pVertical == 1)
         {
             fullscreenOpt -= 1;
+            if (fullscreenOpt == -1) fullscreenOpt = 1;
+            return pVertical;
         }
-        if (pVertical == nSettingsText - 1) pVertical = 0;
-        if (pVertical == -1) pVertical = nSettingsText - 2;
-        if (musicOpt == 2) musicOpt = 0;
-        if (musicOpt == -1) musicOpt = 1;
-        if (fullscreenOpt == 2) fullscreenOpt = 0;
-        if (fullscreenOpt == -1) fullscreenOpt = 1;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && pVertical == 2) return pVertical;
         //Back = return 2
     }
     return -1;
@@ -296,7 +300,7 @@ void loseMenu::draw(sf::RenderWindow& w)
     title.setPosition(sf::Vector2f(0.f, 150.f));
     //w.draw(bg);
     w.draw(title);
-    if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 252.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 252.f));
     else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 302.f));
     //else selected.setPosition(sf::Vector2f(0.f, 352.f));
     w.draw(selected);
@@ -307,20 +311,20 @@ int loseMenu::Switch(sf::RenderWindow& w)
     sf::Event event;
     while (w.pollEvent(event))
     {
-        if (pVertical == -1) pVertical = 0;
         if (event.type == sf::Event::Closed)
             w.close();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && pVertical != -1) return pVertical;
+        else if (pVertical == -1) pVertical = 0;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             pVertical -= 1;
+            if (pVertical == -1) pVertical = nLoseText - 3;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             pVertical += 1;
+            if (pVertical == nLoseText - 2) pVertical = 0;
         }
-        if (pVertical == nLoseText - 2) pVertical = 0;
-        if (pVertical == -1) pVertical = nLoseText - 3;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
     }
     return -1;
 }
@@ -358,7 +362,7 @@ void victoryMenu::draw(sf::RenderWindow& w)
     title.setPosition(sf::Vector2f(0.f, 150.f));
     //w.draw(bg);
     w.draw(title);
-    if (pVertical == 0) selected.setPosition(sf::Vector2f(0.f, 302.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 302.f));
     //else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 302.f));
     //else selected.setPosition(sf::Vector2f(0.f, 352.f));
     w.draw(selected);
@@ -369,20 +373,10 @@ int victoryMenu::Switch(sf::RenderWindow& w)
     sf::Event event;
     while (w.pollEvent(event))
     {
-        if (pVertical == -1) pVertical = 0;
         if (event.type == sf::Event::Closed)
             w.close();
-        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            pVertical -= 1;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            pVertical += 1;
-        }
-        if (pVertical == nVictoryText - 2) pVertical = 0;
-        if (pVertical == -1) pVertical = nVictoryText - 3;*/
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return pVertical;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && pVertical != -1) return pVertical;
+        if (pVertical == -1) pVertical = 0;
         //Only return 0
     }
     return -1;
