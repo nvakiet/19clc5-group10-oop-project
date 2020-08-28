@@ -23,6 +23,7 @@
     <ClCompile Include="src\AnimalLane.cpp" />
     <ClCompile Include="src\AnimalLaneManager.cpp" />
     <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\menu.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="src\trafficlight.cpp" />
     <ClCompile Include="src\trafficmanager.cpp" />
     <ClCompile Include="src\trafficroad.cpp" />
+    <ClCompile Include="src\UI.cpp" />
     <ClCompile Include="src\vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +40,7 @@
     <ClInclude Include="headers\AnimalLane.h" />
     <ClInclude Include="headers\AnimalLaneManager.h" />
     <ClInclude Include="headers\Animation.h" />
+    <ClInclude Include="headers\Game.h" />
     <ClInclude Include="headers\menu.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\soundLoad.h" />
@@ -45,6 +48,7 @@
     <ClInclude Include="headers\trafficlight.h" />
     <ClInclude Include="headers\trafficmanager.h" />
     <ClInclude Include="headers\trafficroad.h" />
+    <ClInclude Include="headers\UI.h" />
     <ClInclude Include="headers\vehicle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

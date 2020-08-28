@@ -9,8 +9,9 @@
 #include "trafficmanager.h"
 #include "AnimalLaneManager.h"
 #include "menu.h"
+#include "UI.h"
 #include <fstream>
-
+#include <iostream>
 class GameState {
 public:
 	//The pointers shall be deleted at client code
@@ -27,10 +28,6 @@ protected:
 	static int fullscreenOption;
 };
 
-int GameState::musicOption = 1;
-int GameState::fullscreenOption = 0;
-
-
 class MainMenuState : public GameState {
 public:
 	//Load 2 options when starting or switch back to this state
@@ -46,7 +43,7 @@ public:
 	GameState* handleLogic() override { return nullptr; }
 	
 	void draw(sf::RenderWindow&) override;
-	~MainMenuState();
+	~MainMenuState() = default;
 private:
 	mainMenu gameMenu;
 };
@@ -61,7 +58,7 @@ public:
 	GameState* handleInput(sf::RenderWindow&) override;
 
 	//No need in this state
-	void update() override {};
+	void update() override {}
 	
 	//No need in this state
 	GameState* handleLogic() override { return nullptr; }
@@ -72,31 +69,31 @@ private:
 	settingsMenu gameMenu;
 };
 
-class PlayingState : public GameState {
-public:
-	//Play the game with default data or saved data
-	PlayingState(int = 1, float = 0, long int = 0);
-	
-	//Switch to PausingState or MainMenuState or Close the window
-	GameState* handleInput(sf::RenderWindow&) override;
-	
-	//Update player's, traffics' and animals' positions, new score and playTime
-	void update() override;
-	
-	//Check impacts, living or dying, then either continue to new level or switch to VictoryState or LoseState
-	GameState* handleLogic() override;
-	
-	void draw(sf::RenderWindow&) override;
-	~PlayingState();
-private:
-	int level;
-	const int maxLevel;
-	float playTime;
-	long int score;
-	sf::Clock gameClock;
-	Player player;
-	trafficmanager traffics;
-	AnimalManager animals;
-};
+//class PlayingState : public GameState {
+//public:
+//	//Play the game with default data or saved data
+//	PlayingState(int = 1, float = 0, long int = 0);
+//	
+//	//Switch to PausingState or MainMenuState or Close the window
+//	GameState* handleInput(sf::RenderWindow&) override;
+//	
+//	//Update player's, traffics' and animals' positions, new score and playTime
+//	void update() override;
+//	
+//	//Check impacts, living or dying, then either continue to new level or switch to VictoryState or LoseState
+//	GameState* handleLogic() override;
+//	
+//	void draw(sf::RenderWindow&) override;
+//	~PlayingState();
+//private:
+//	int level;
+//	const int maxLevel;
+//	float playTime;
+//	long int score;
+//	sf::Clock gameClock;
+//	Player player;
+//	trafficmanager traffics;
+//	AnimalManager animals;
+//};
 
 #endif // !GAME_H
