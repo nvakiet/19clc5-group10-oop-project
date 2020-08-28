@@ -143,6 +143,8 @@ int main() {
 	sf::RenderWindow window;
 	GameState* currentState = new MainMenuState(window, music, fullscreen);
 	GameState* newState = nullptr;
+	sf::Clock frameClock;
+	float frameTime = 0;
 	//Game Loop
 	while (window.isOpen()) {
 		//Input phase
@@ -153,7 +155,7 @@ int main() {
 			newState = nullptr;
 		}
 		//Update phase
-		currentState->update();
+		currentState->update(frameTime);
 		//Logic phase
 		newState = currentState->handleLogic();
 		if (newState != nullptr) {
@@ -165,8 +167,11 @@ int main() {
 		window.clear();
 		currentState->draw(window);
 		window.display();
+		//Get frame time
+		frameTime = frameClock.restart().asSeconds();
 	}
-
+	delete newState;
+	delete currentState;
 	return 0;
 }
 

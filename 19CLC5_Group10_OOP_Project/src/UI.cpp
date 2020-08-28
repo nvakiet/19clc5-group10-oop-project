@@ -15,7 +15,7 @@ UI::UI()
     UIText[0]->setPosition(5.f, 5.f);
     UIText[1]->setPosition(720.f, 5.f);
 }
-void UI::draw(sf::RenderWindow& w, int& score, int& level)
+void UI::draw(sf::RenderWindow& w, const long int& score, const int& level)
 {
     string scoreString = "Score: ";
     scoreString += to_string(score);

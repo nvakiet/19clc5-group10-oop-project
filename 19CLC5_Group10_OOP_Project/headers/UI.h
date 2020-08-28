@@ -15,7 +15,7 @@ private:
 	vector<sf::Text*> UIText;
 public:
 	UI();
-	void draw(sf::RenderWindow& w, int& score, int& level);
+	void draw(sf::RenderWindow& w, const long int& score, const int& level);
 	~UI();
 };
 

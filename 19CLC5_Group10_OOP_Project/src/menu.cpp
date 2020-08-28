@@ -266,6 +266,7 @@ settingsMenu::~settingsMenu()
     fullscreenButton.clear();
     musicOptText.clear();
     fullscreenOptText.clear();
+}
 
 loseMenu::loseMenu(const texture& textureList) :menu(textureList)
 {
@@ -283,7 +284,7 @@ loseMenu::loseMenu(const texture& textureList) :menu(textureList)
     loseText[0]->setPosition(340.f, 150.f);
     loseText[1]->setFillColor(sf::Color::Red);
     loseText[1]->setStyle(sf::Text::Italic);
-    loseText[1]->setString("You were hitted");
+    loseText[1]->setString("You were hitted!");
     loseText[1]->setPosition(260.f, 200.f);
     loseText[2]->setString("Load Game");
     loseText[2]->setPosition(295.f, 250.f);
