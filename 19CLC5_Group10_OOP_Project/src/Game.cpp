@@ -152,7 +152,7 @@ void PlayingState::update(float frameTime) {
 		}
 		playTime += frameTime;
 		float stateTime = stateClock.getElapsedTime().asSeconds();
-		if (stateTime < 0.1f) frameTime *= 100;
+		if (stateTime < 0.1f) frameTime *= 600;
 		player.move(playerInput, frameTime);
 		traffics.update(frameTime, stateTime);
 		animals.update(frameTime, stateTime);
@@ -172,7 +172,7 @@ void PlayingState::update(float frameTime) {
 		score = (level * multiplier * (timeToWin - playTime) < 0)? 0 : level * multiplier * (timeToWin - playTime);
 	}
 	else {
-		stateClock.restart();
+		//stateClock.restart();
 		soundManager.ingame->pause();
 	}
 }
