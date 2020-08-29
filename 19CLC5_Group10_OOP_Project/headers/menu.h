@@ -40,7 +40,7 @@ private:
 public:
     pauseMenu(const texture& textureList);
     void draw(sf::RenderWindow& w);
-    int Switch(sf::RenderWindow& w);
+    //int Switch(sf::RenderWindow& w);
     ~pauseMenu();
 };
 

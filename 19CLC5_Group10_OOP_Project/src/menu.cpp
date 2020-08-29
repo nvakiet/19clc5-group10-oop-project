@@ -11,7 +11,7 @@ menu::menu(const texture& textureList)
 
 mainMenu::mainMenu(const texture& textureList) :menu(textureList)
 {
-    nMainText = 3;
+    nMainText = 4;
     for (int i = 0; i < nMainText; i++)
     {
         mainText.push_back(new sf::Text);
@@ -21,19 +21,22 @@ mainMenu::mainMenu(const texture& textureList) :menu(textureList)
         mainText[i]->setStyle(sf::Text::Bold);
     }
     mainText[0]->setString("New Game");
-    mainText[0]->setPosition(300.f, 200.f);
+    mainText[0]->setPosition(300.f, 150.f);
     mainText[1]->setString("Load Game");
-    mainText[1]->setPosition(295.f, 250.f);
+    mainText[1]->setPosition(295.f, 200.f);
     mainText[2]->setString("Settings");
-    mainText[2]->setPosition(325.f, 300.f);
+    mainText[2]->setPosition(325.f, 250.f);
+    mainText[3]->setString("Exit");
+    mainText[3]->setPosition(365.f, 300.f);
 }
 void mainMenu::draw(sf::RenderWindow& w)
 {
     title.setPosition(sf::Vector2f(0.f, 150.f));
     w.draw(bg);
     w.draw(title);
-    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 202.f));
-    else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
+    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 152.f));
+    else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 202.f));
+    else if (pVertical == 2) selected.setPosition(sf::Vector2f(0.f, 252.f));
     else selected.setPosition(sf::Vector2f(0.f, 302.f));
     w.draw(selected);
     for (int i = 0; i < nMainText; i++) w.draw(*mainText[i]);
@@ -68,40 +71,25 @@ mainMenu::~mainMenu()
 
 pauseMenu::pauseMenu(const texture& textureList) :menu(textureList)
 {
-    nPauseText = 5;
+    nPauseText = 1;
     for (int i = 0; i < nPauseText; i++)
     {
         pauseText.push_back(new sf::Text);
         pauseText[i]->setFont(font);
         pauseText[i]->setCharacterSize(40);
-        pauseText[i]->setFillColor(sf::Color::White);
+        pauseText[i]->setFillColor(sf::Color::Yellow);
         pauseText[i]->setStyle(sf::Text::Bold);
     }
-    pauseText[0]->setFillColor(sf::Color::Yellow);
     pauseText[0]->setString("Pause");
-    pauseText[0]->setPosition(345.f, 150.f);
-    pauseText[1]->setString("Continue");
-    pauseText[1]->setPosition(320.f, 200.f);
-    pauseText[2]->setString("Save");
-    pauseText[2]->setPosition(360.f, 250.f);
-    pauseText[3]->setString("Settings");
-    pauseText[3]->setPosition(325.f, 300.f);
-    pauseText[4]->setString("Back to Menu");
-    pauseText[4]->setPosition(270.f, 350.f);
+    pauseText[0]->setPosition(345.f, 272.f);
 }
 void pauseMenu::draw(sf::RenderWindow& w)
 {
-    title.setPosition(sf::Vector2f(0.f, 150.f));
-    //w.draw(bg);
-    w.draw(title);
-    if (pVertical == 0 || pVertical == -1) selected.setPosition(sf::Vector2f(0.f, 202.f));
-    else if (pVertical == 1) selected.setPosition(sf::Vector2f(0.f, 252.f));
-    else if (pVertical == 2) selected.setPosition(sf::Vector2f(0.f, 302.f));
-    else selected.setPosition(sf::Vector2f(0.f, 352.f));
+    selected.setPosition(sf::Vector2f(0.f, 275.f));
     w.draw(selected);
     for (int i = 0; i < nPauseText; i++) w.draw(*pauseText[i]);
 }
-int pauseMenu::Switch(sf::RenderWindow& w)
+/*int pauseMenu::Switch(sf::RenderWindow& w)
 {
     sf::Event event;
     while (w.pollEvent(event))
@@ -122,7 +110,7 @@ int pauseMenu::Switch(sf::RenderWindow& w)
         }
     }
     return -1;
-}
+}*/
 pauseMenu::~pauseMenu()
 {
     for (int i = 0; i < nPauseText; i++) delete pauseText[i];
