@@ -121,10 +121,10 @@ SettingsState::~SettingsState() {
 	fout.close();
 }
 
-PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) : 
-	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore), 
+PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) :
+	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore),
 	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
-	playerInput(), onHold(false), playerGUI(), startLock(true)
+	playerInput(), onHold(false), playerGUI(), startCount(1)
 {
 	srand(time(nullptr)); //New seed every time playing
 	if (level > maxLevel) level = maxLevel;
@@ -161,12 +161,16 @@ void PlayingState::update(float frameTime) {
 			soundManager.ingame->play();
 		}
 		playTime += frameTime;
-		if (stateClock.getElapsedTime().asSeconds() > 1.5f) {
+		float stateTime = stateClock.getElapsedTime().asSeconds();
+		if (stateTime > 3) {
 			//Only allow player to move after all lanes have been spawned
-			startLock = false;
+			startCount = 4;
 			player.move(playerInput, frameTime);
 			score -= level * 100 * frameTime;
 		}
+		else if (stateTime > 2) startCount = 3;
+		else if (stateTime > 1) startCount = 2;
+		else startCount = 1;
 		traffics.update(frameTime, playTime);
 		animals.update(frameTime, playTime);
 		if (score < 0) score = 0;
@@ -207,12 +211,25 @@ GameState* PlayingState::handleLogic() {
 
 void PlayingState::draw(sf::RenderWindow& window) {
 	window.draw(laneBackground);
-	if (!startLock) {
+	traffics.draw(window);
+	animals.draw(window);
+	if (startCount == 4) {
 		playerGUI.draw(window, score, level);
 		player.draw(window);
 	}
-	traffics.draw(window);
-	animals.draw(window);
+	else {
+		sf::Font font;
+		font.loadFromFile("images/fonts/arial.ttf");
+		sf::Text countText;
+		countText.setFont(font);
+		countText.setCharacterSize(100);
+		countText.setFillColor(sf::Color::Red);
+		countText.setStyle(sf::Text::Bold);
+		countText.setString(to_string(startCount));
+		countText.setOrigin(countText.getGlobalBounds().width / 2, countText.getGlobalBounds().height / 2);
+		countText.setPosition(400, 300);
+		window.draw(countText);
+	}
 	if (onHold) {
 		pauseMenu pauseUI(textureManager);
 		pauseUI.draw(window);

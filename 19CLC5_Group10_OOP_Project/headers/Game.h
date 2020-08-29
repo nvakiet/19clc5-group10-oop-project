@@ -96,7 +96,7 @@ private:
 	float playTime;
 	long int score;
 	bool onHold;
-	bool startLock;
+	int startCount; //1 to 4, 4 means spawn player
 	sf::Event playerInput;
 	sf::Clock stateClock;
 	Player player;
