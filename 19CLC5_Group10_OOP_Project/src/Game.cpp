@@ -123,7 +123,7 @@ SettingsState::~SettingsState() {
 
 PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) : 
 	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore), 
-	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager), animals(textureManager),
+	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
 	playerInput(), onHold(false), playerGUI()
 {
 	srand(time(nullptr)); //New seed every time playing
@@ -132,9 +132,11 @@ PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore)
 		traffics.UpLevel();
 		animals.UpLevel();
 	}
-	soundManager.menu->stop();
-	soundManager.ingame->play();
+	if (soundManager.menu->getStatus() == sf::Music::Status::Playing) {
+		soundManager.menu->stop();
+	}
 	soundManager.ingame->setLoop(true);
+	soundManager.ingame->play();
 	laneBackground.setTexture(*textureManager.igBackground);
 }
 
@@ -160,8 +162,7 @@ void PlayingState::update(float frameTime) {
 		playTime += frameTime;
 		float stateTime = stateClock.getElapsedTime().asSeconds();
 		if (stateTime < 0.1f) {
-			frameTime *= 60;
-			//stateTime *= 100;
+			stateTime *= 600;
 		}
 		player.move(playerInput, frameTime);
 		traffics.update(frameTime, stateTime);
@@ -207,9 +208,7 @@ GameState* PlayingState::handleLogic() {
 			}
 			else {
 				++level;
-				traffics.UpLevel();
-				animals.UpLevel();
-				player.resetStatus();
+				return new PlayingState(level, playTime, score);
 			}
 		}
 	}
@@ -229,7 +228,7 @@ void PlayingState::draw(sf::RenderWindow& window) {
 }
 
 PlayingState::~PlayingState() {
-	soundManager.ingame->stop();
+	soundManager.ingame->pause();
 	//Save data when switch out to other states
 	ofstream fout;
 	fout.open("save.bin", ios::binary);
@@ -245,10 +244,11 @@ PlayingState::~PlayingState() {
 }
 
 VictoryState::VictoryState(int savedLevel, float savedTime, long int savedScore) : level(savedLevel), playTime(savedTime), score(savedScore), gameMenu(textureManager) {
-	if (soundManager.menu->getStatus() != sf::Music::Status::Playing) {
+	/*if (soundManager.menu->getStatus() != sf::Music::Status::Playing) {
 		soundManager.menu->setLoop(true);
 		soundManager.menu->play();
-	}
+	}*/
+	soundManager.winSound.play();
 }
 
 GameState* VictoryState::handleInput(sf::RenderWindow& window) {
@@ -267,11 +267,12 @@ void VictoryState::draw(sf::RenderWindow& window) {
 	playerGUI.draw(window, score, level);
 }
 
+VictoryState::~VictoryState() {
+	soundManager.winSound.stop();
+}
+
 LoseState::LoseState(int savedLevel, float savedTime, long int savedScore) : level(savedLevel), playTime(savedTime), score(savedScore), gameMenu(textureManager) {
-	if (soundManager.menu->getStatus() != sf::Music::Status::Playing) {
-		soundManager.menu->setLoop(true);
-		soundManager.menu->play();
-	}
+	soundManager.loseSound.play();
 }
 
 GameState* LoseState::handleInput(sf::RenderWindow& window) {
@@ -290,4 +291,8 @@ void LoseState::draw(sf::RenderWindow& window) {
 	window.draw(Background);
 	gameMenu.draw(window);
 	playerGUI.draw(window, score, level);
+}
+
+LoseState::~LoseState() {
+	soundManager.loseSound.stop();
 }

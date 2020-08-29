@@ -265,7 +265,7 @@ bool checkAllFilesExist() {
 		"sound/stop.wav",
 		"sound/menu.ogg",
 		"sound/traffic.ogg",
-		"sound/win2.wav",
+		"sound/win.wav",
 		"sound/lose.wav"
 	};
 	ifstream fin;

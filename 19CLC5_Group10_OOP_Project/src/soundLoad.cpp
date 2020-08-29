@@ -15,7 +15,7 @@ sound::sound()
 	stop = new sf::SoundBuffer;
 	stop->loadFromFile("sound/stop.wav");
 	win = new sf::SoundBuffer;
-	win->loadFromFile("sound/win2.wav");
+	win->loadFromFile("sound/win.wav");
 	lose = new sf::SoundBuffer;
 	lose->loadFromFile("sound/lose.wav");
 	menu = new sf::Music;

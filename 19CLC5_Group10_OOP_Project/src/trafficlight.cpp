@@ -1,6 +1,6 @@
 #include "trafficlight.h"
 
-trafficlight::trafficlight(double mXpos, double mYpos, double length, double width,double level, texture &a)
+trafficlight::trafficlight(double mXpos, double mYpos, double length, double width,double level, texture &a, const sf::Sound& sound)
 {
     m_status = false;
     m_fX = mXpos;
@@ -9,7 +9,7 @@ trafficlight::trafficlight(double mXpos, double mYpos, double length, double wid
     m_width = width;
     m_level = level;
     m_NextStop = 0.5;
-
+    stopSound = sound;
 //    sf::Texture* text;
 //    text = new sf::Texture;
 //    text->loadFromFile("assets/stop.png");
@@ -55,6 +55,7 @@ void trafficlight::update(double fGameTime)
     {
         bool tmp = !m_status;
         m_status = tmp;
+        if (!m_status) stopSound.play();
         StopClock.restart();
         m_NextStop = getNextStop();
     }

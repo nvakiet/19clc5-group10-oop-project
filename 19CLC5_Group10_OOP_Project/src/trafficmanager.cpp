@@ -1,6 +1,6 @@
 #include "trafficmanager.h"
 
-trafficmanager::trafficmanager(texture &textureManager)
+trafficmanager::trafficmanager(texture &textureManager, const sf::Sound& sound)
 {
     m_vland.clear();
     m_car = textureManager.vehicle;
@@ -10,12 +10,12 @@ trafficmanager::trafficmanager(texture &textureManager)
         if (rand()%2==0)
         {
             m_vland.push_back(trafficlane(-100,magic[i],100,1,m_level,m_car));
-            m_light.push_back(trafficlight(750,magic[i],40,40,m_level,textureManager));
+            m_light.push_back(trafficlight(750,magic[i],40,40,m_level,textureManager, sound));
         }
         else
         {
             m_vland.push_back(trafficlane(900,magic[i],100,-1,m_level,m_car));
-            m_light.push_back(trafficlight(0,magic[i],40,40,m_level,textureManager));
+            m_light.push_back(trafficlight(0,magic[i],40,40,m_level,textureManager, sound));
         }
 
     }
@@ -43,8 +43,9 @@ void trafficmanager::draw(sf::RenderWindow &window)
 {
     for (int i=0; i<m_vland.size(); i++)
     {
-        if (!m_light[i].m_status)
+        if (!m_light[i].m_status) {
             m_light[i].draw(window);
+        }
         m_vland[i].draw(window);
     }
 //    m_vland[2].draw(window);
@@ -67,7 +68,6 @@ bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
     for (int i = 0; i < m_vland.size(); i++){
 		if (magic[i]-60.0 <= fYpos && fYpos <= magic[i]+60.0 && m_vland[i].checkCollision(other))
 		{
-		    m_sound.carSound.play();
 			return true;	// collision
 		}
 	}

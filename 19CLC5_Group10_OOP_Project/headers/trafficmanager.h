@@ -21,10 +21,9 @@ private:
     vector <trafficlane> m_vland;
     vector <trafficlight> m_light;
     int m_level=5;
-    sound m_sound;
 
 public:
-    trafficmanager(texture &texturemanager);
+    trafficmanager(texture &texturemanager, const sf::Sound& sound);
     void update(double elapsed, double gametime);
     void draw(sf::RenderWindow & window);
     bool checkCollosion(sf::FloatRect other);

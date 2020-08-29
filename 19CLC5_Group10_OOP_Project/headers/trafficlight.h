@@ -22,14 +22,14 @@ private:
     double m_width;
     double m_level;
     double m_NextStop; //time to change status
-
+    sf::Sound stopSound;
     sf::Clock StopClock;
 
 public:
     bool m_status; //on or off|   true that car can run
     sf::RectangleShape m_rectBox;
 
-    trafficlight(double mXpos, double mYpos, double length, double width,double level,texture &a);
+    trafficlight(double mXpos, double mYpos, double length, double width,double level,texture &a, const sf::Sound& sound);
     void update(double fGameTime);
     void draw(sf::RenderWindow &window);
     double getNextStop();

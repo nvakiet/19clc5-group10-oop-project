@@ -117,7 +117,7 @@ public:
 
 	//Draw victory screen with the GUI
 	void draw(sf::RenderWindow&) override;
-	~VictoryState() = default;
+	~VictoryState();
 private:
 	int level;
 	float playTime;
@@ -141,7 +141,7 @@ public:
 
 	//Draw lose screen with the GUI
 	void draw(sf::RenderWindow&) override;
-	~LoseState() = default;
+	~LoseState();
 private:
 	int level;
 	float playTime;
