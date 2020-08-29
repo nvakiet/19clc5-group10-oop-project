@@ -52,7 +52,11 @@ GameState* MainMenuState::handleInput(sf::RenderWindow& window) {
 	}
 	case 2:
 		return new SettingsState();
-	default: return nullptr;
+	case 3:
+		window.close();
+		return nullptr;
+	default:
+		return nullptr;
 	}
 }
 
@@ -92,6 +96,9 @@ GameState* SettingsState::handleInput(sf::RenderWindow& window) {
 		return nullptr;
 	case 2:
 		return new MainMenuState(window, musicOption, fullscreenOption);
+	case 3:
+		window.close();
+		return nullptr;
 	default: return nullptr;
 	}
 }
@@ -215,6 +222,10 @@ void PlayingState::draw(sf::RenderWindow& window) {
 	traffics.draw(window);
 	animals.draw(window);
 	player.draw(window);
+	if (onHold) {
+		pauseMenu pauseUI(textureManager);
+		pauseUI.draw(window);
+	}
 }
 
 PlayingState::~PlayingState() {
@@ -249,6 +260,9 @@ GameState* VictoryState::handleInput(sf::RenderWindow& window) {
 }
 
 void VictoryState::draw(sf::RenderWindow& window) {
+	sf::Sprite Background;
+	Background.setTexture(*textureManager.background);
+	window.draw(Background);
 	gameMenu.draw(window);
 	playerGUI.draw(window, score, level);
 }
@@ -271,6 +285,9 @@ GameState* LoseState::handleInput(sf::RenderWindow& window) {
 }
 
 void LoseState::draw(sf::RenderWindow& window) {
+	sf::Sprite Background;
+	Background.setTexture(*textureManager.background);
+	window.draw(Background);
 	gameMenu.draw(window);
 	playerGUI.draw(window, score, level);
 }
