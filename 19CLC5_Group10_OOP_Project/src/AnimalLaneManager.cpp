@@ -60,7 +60,7 @@ bool AnimalManager::checkCollosion(sf::FloatRect other, double fYpos)
 
 void AnimalManager::UpLevel()
 {
-    level+=2;
+    level+=4;
 }
 
 
