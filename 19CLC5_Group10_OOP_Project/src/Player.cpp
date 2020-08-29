@@ -11,7 +11,7 @@ Player::Player(const sf::Texture& playerTexture, const sf::Sound& moveSound) : s
 
 void Player::move(const sf::Event& event, const float& frameTime) {
 	if (event.type == sf::Event::KeyPressed) {
-		float cdTime = 0.3f;
+		float cdTime = 0.2f;
 		switch (event.key.code) {
 			//Check if the player will move out of screen or is still on cooldown, if not then allow to move
 		case sf::Keyboard::Up:

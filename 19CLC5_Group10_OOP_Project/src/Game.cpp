@@ -148,11 +148,14 @@ GameState* PlayingState::handleInput(sf::RenderWindow& window) {
 void PlayingState::update(float frameTime) {
 	if (!onHold) {
 		if (soundManager.ingame->getStatus() == sf::Music::Status::Paused) {
-			soundManager.menu->play();
+			soundManager.ingame->play();
 		}
 		playTime += frameTime;
 		float stateTime = stateClock.getElapsedTime().asSeconds();
-		if (stateTime < 0.1f) frameTime *= 60;
+		if (stateTime < 0.1f) {
+			frameTime *= 60;
+			stateTime *= 100;
+		}
 		player.move(playerInput, frameTime);
 		traffics.update(frameTime, stateTime);
 		animals.update(frameTime, stateTime);
@@ -246,8 +249,8 @@ GameState* VictoryState::handleInput(sf::RenderWindow& window) {
 }
 
 void VictoryState::draw(sf::RenderWindow& window) {
-	playerGUI.draw(window, score, level);
 	gameMenu.draw(window);
+	playerGUI.draw(window, score, level);
 }
 
 LoseState::LoseState(int savedLevel, float savedTime, long int savedScore) : level(savedLevel), playTime(savedTime), score(savedScore), gameMenu(textureManager) {
@@ -268,6 +271,6 @@ GameState* LoseState::handleInput(sf::RenderWindow& window) {
 }
 
 void LoseState::draw(sf::RenderWindow& window) {
-	playerGUI.draw(window, score, level);
 	gameMenu.draw(window);
+	playerGUI.draw(window, score, level);
 }
