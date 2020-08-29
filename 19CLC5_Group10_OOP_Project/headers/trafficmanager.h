@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include "soundLoad.h"
 
 
 class trafficmanager
@@ -20,6 +21,7 @@ private:
     vector <trafficlane> m_vland;
     vector <trafficlight> m_light;
     int m_level=5;
+    sound m_sound;
 
 public:
     trafficmanager(texture &texturemanager);

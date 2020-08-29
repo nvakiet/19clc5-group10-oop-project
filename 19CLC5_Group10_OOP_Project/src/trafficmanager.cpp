@@ -19,11 +19,8 @@ trafficmanager::trafficmanager(texture &textureManager)
         }
 
     }
-
  //   m_vland.push_back(trafficlane(-100,300,100,1,3,m_car));
-
 }
-
 
 void trafficmanager::update(double elapsed, double gametime)
 {
@@ -70,6 +67,7 @@ bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
     for (int i = 0; i < m_vland.size(); i++){
 		if (magic[i]-60.0 <= fYpos && fYpos <= magic[i]+60.0 && m_vland[i].checkCollision(other))
 		{
+		    m_sound.carSound.play();
 			return true;	// collision
 		}
 	}

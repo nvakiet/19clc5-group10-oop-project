@@ -49,6 +49,9 @@ bool AnimalManager::checkCollosion(sf::FloatRect other, double fYpos)
 	for (int i = 0; i < land.size(); i++) {
         if (magic[i]-60.0 <= fYpos && fYpos <= magic[i]+60.0 && land[i].checkCollision(other))
 		{
+            if (i==0 || i==3) m_sound.dinosaurSound.play();
+		    else if (i==1) m_sound.dogSound.play();
+		    else if (i==2) m_sound.catSound.play();
 			return true;	// collision
 		}
 	}

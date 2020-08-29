@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include "soundLoad.h"
 
 
 class AnimalManager
@@ -18,8 +19,10 @@ private:
     vector<vector <sf::Texture*>> animal;
     vector <AnimalLane> land;
     int level = 3;
+    sound m_sound;
 public:
     AnimalManager(const texture& textureManager);
+    AnimalManager(const texture& textureManager, sound &s);
     //~AnimalManager();
     //void unloadtexture();
     void update(float elapsed, float gametime);

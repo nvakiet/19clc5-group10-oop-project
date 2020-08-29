@@ -98,7 +98,7 @@
 //                            level++;
 //                            player.resetStatus();
 //                            traffics.UpLevel();
-//                            
+//
 //                        }
 //                        else status.isOver = true;
 //                    }
