@@ -17,6 +17,8 @@ public:
 	sf::Sound moveSound;
 	sf::Sound carSound;
 	sf::Sound stopSound;
+	sf::Sound winSound;
+	sf::Sound loseSound;
 	sf::Music* menu;
 	sf::Music* ingame;
 	void setAllVolumes(float vol);
@@ -31,5 +33,7 @@ private:
 	sf::SoundBuffer* moving;
 	sf::SoundBuffer* cars;
 	sf::SoundBuffer* stop;
+	sf::SoundBuffer* win;
+	sf::SoundBuffer* lose;
 };
 #endif

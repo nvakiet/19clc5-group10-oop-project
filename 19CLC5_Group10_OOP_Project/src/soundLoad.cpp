@@ -13,7 +13,11 @@ sound::sound()
 	cars = new sf::SoundBuffer;
 	cars->loadFromFile("sound/cars.ogg");
 	stop = new sf::SoundBuffer;
-	stop->loadFromFile("sound/stop.ogg");
+	stop->loadFromFile("sound/stop.wav");
+	win = new sf::SoundBuffer;
+	win->loadFromFile("sound/win2.wav");
+	lose = new sf::SoundBuffer;
+	lose->loadFromFile("sound/lose.wav");
 	menu = new sf::Music;
 	menu->openFromFile("sound/menu.ogg");
 	ingame = new sf::Music;
@@ -24,6 +28,8 @@ sound::sound()
 	moveSound.setBuffer(*moving);
 	carSound.setBuffer(*cars);
 	stopSound.setBuffer(*stop);
+	winSound.setBuffer(*win);
+	loseSound.setBuffer(*lose);
 	setAllVolumes(100);
 }
 
@@ -35,6 +41,8 @@ void sound::setAllVolumes(float vol){
 	moveSound.setVolume(universalVolume);
 	carSound.setVolume(universalVolume);
 	stopSound.setVolume(universalVolume);
+	winSound.setVolume(universalVolume);
+	loseSound.setVolume(universalVolume);
 	menu->setVolume(universalVolume);
 	ingame->setVolume(universalVolume);
 }
@@ -53,4 +61,6 @@ sound::~sound()
 	delete stop;
 	delete menu;
 	delete ingame;
+	delete win;
+	delete lose;
 }

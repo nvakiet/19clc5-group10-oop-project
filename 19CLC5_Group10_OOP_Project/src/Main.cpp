@@ -197,7 +197,7 @@ int main() {
 
 bool checkAllFilesExist() {
 	//1 Font, 57 textures, 8 audio files
-	const int fileCount = 66;
+	const int fileCount = 68;
 	string AllRequiredFiles[fileCount] = {
 		"images/fonts/arial.ttf",
 		"images/textures/animals/cat.png",
@@ -262,9 +262,11 @@ bool checkAllFilesExist() {
 		"sound/dinosaurs.ogg",
 		"sound/move.ogg",
 		"sound/cars.ogg",
-		"sound/stop.ogg",
+		"sound/stop.wav",
 		"sound/menu.ogg",
 		"sound/traffic.ogg",
+		"sound/win2.wav",
+		"sound/lose.wav"
 	};
 	ifstream fin;
 	for (int i = 0; i < fileCount; ++i) {
