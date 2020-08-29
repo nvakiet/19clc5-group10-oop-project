@@ -10,8 +10,7 @@
 #include <SFML/System.hpp>
 #include <iomanip>
 #include "textureLoad.h"
-
-using namespace std;
+#include "soundLoad.h"
 
 class trafficlight
 {

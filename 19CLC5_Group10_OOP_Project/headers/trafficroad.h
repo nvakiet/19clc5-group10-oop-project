@@ -30,6 +30,7 @@ private:
 
 public:
     trafficlane();
+    ~trafficlane();
     trafficlane(double fXpos, double fYpos, double fWidth,double landspeed,double level, vector<sf::Texture*> textures);
     void draw(sf::RenderWindow &window);
     void update(double elapsed,double fGameTime);

@@ -61,8 +61,9 @@ float AnimalLane::getNextSpawn()
 
     if (number > 0)
     {
-        fMinTime = 0.2;
-        fMaxTime = 0.2;
+        double magic[] = {0.2,0.165,0.15,0.12,0.1};
+        fMinTime = magic[(int)(level-1)/2];
+        fMaxTime = magic[(int)(level-1)/2];
         time = (fMinTime + (float)(rand()) / ((float)(RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
         number--;
     }
@@ -90,4 +91,10 @@ int AnimalLane::getNumber()
 {
     int n = rand() % 3 + 3;
     return n;
+}
+
+AnimalLane::~AnimalLane()
+{
+    m_vptexTextures.clear();
+    AnimalsInLane.clear();
 }

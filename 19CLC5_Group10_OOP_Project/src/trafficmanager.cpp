@@ -3,6 +3,7 @@
 trafficmanager::trafficmanager(texture &textureManager)
 {
     m_vland.clear();
+    m_light.clear();
     m_car = textureManager.vehicle;
     int magic[] = {100,200,350,450};
     for (int i=0; i<4; i++)
@@ -77,5 +78,26 @@ bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
 void trafficmanager::UpLevel()
 {
     m_level+=10;
+    m_vland.clear();
+    m_light.clear();
+    m_car = text.vehicle;
+    int magic[] = {100,200,350,450};
+    for (int i=0; i<4; i++)
+    {
+        if (i%2==0)
+        //if (rand()%2==0)
+        {
+            m_vland.push_back(trafficlane(-100,magic[i],100,1,m_level,m_car));
+            m_light.push_back(trafficlight(750,magic[i],40,40,m_level,text));
+            cout << "level " << m_level << ":" << i << '\n';
+        }
+        else
+        {
+            m_vland.push_back(trafficlane(900,magic[i],100,-1,m_level,m_car));
+            m_light.push_back(trafficlight(0,magic[i],40,40,m_level,text));
+            cout << "level " << m_level << ":" << i << '\n';
+        }
+
+    }
 }
 
