@@ -54,8 +54,6 @@ void trafficlight::update(double fGameTime)
     if (magic > 0)
     {
         bool tmp = !m_status;
-        sound m;
-        m.stopSound.play();
         m_status = tmp;
         StopClock.restart();
         m_NextStop = getNextStop();

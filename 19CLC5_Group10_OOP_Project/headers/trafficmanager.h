@@ -20,9 +20,8 @@ private:
     vector <sf::Texture*> m_car;
     vector <trafficlane> m_vland;
     vector <trafficlight> m_light;
-    int m_level=-5;
+    int m_level=5;
     sound m_sound;
-    texture text;
 
 public:
     trafficmanager(texture &texturemanager);

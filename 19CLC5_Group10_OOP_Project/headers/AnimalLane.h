@@ -17,7 +17,7 @@ class AnimalLane
 private:
     float laneHeight;
     float laneXStart;
-    float NextSpawn=0.1;
+    float NextSpawn;
     float Width;
     float LaneSpeed;
     float level;
@@ -31,7 +31,6 @@ private:
 
 public:
     AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures);
-    ~AnimalLane();
     void draw(sf::RenderWindow& window);
     void update(float elapsed, float fGameTime);
     float getNextSpawn();

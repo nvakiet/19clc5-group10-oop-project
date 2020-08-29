@@ -9,7 +9,6 @@ trafficlane::trafficlane(double fXpos, double fYpos, double fWidth, double lands
     m_LaneSpeed = landspeed/abs(landspeed);
     m_level = level;
     hack_speed = (rand()%3+1)*5*(m_level+1); //hack speed
-    m_NextSpawn = 0.1;
 }
 
 void trafficlane::draw(sf::RenderWindow &window)
@@ -53,8 +52,6 @@ void trafficlane::update(double elapsed, double fGameTime)
         CarsInLane.push_back(vehicle(speed * m_LaneSpeed, m_laneXStart, m_laneHeight, m_Width, m_vptexTextures));
         spawnClock.restart();
 		m_NextSpawn = getNextSpawn();
-//		if (m_level >= 15)
-//            cout << "landspeed " << m_LaneSpeed << " " << "level " << m_level << '\n';
     }
     jump:
     while (CarsInLane.size() > 0 && ((m_LaneSpeed > 0 && CarsInLane[0].m_fX > 800) || (m_LaneSpeed < 0 && CarsInLane[0].m_fX < 0)))
@@ -98,10 +95,4 @@ bool trafficlane::check_position_light() //have car in end true.
         if (m_LaneSpeed > 0 && CarsInLane[i].m_fX > 630) return true;
         else if (m_LaneSpeed < 0 && 170 > CarsInLane[i].m_fX) return true;
     return false;
-}
-
-trafficlane::~trafficlane()
-{
-    m_vptexTextures.clear();
-    CarsInLane.clear();
 }
