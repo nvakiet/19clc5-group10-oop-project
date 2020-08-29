@@ -76,7 +76,7 @@ class PlayingState : public GameState {
 public:
 	//Play the game with default data or saved data
 	//Init game components, skip to saved level
-	PlayingState(int = 1, float = 0, long int = 0);
+	PlayingState(int = 1, float = 0, long int = 6000);
 	
 	//Switch onHold to true or MainMenuState or Close the window
 	GameState* handleInput(sf::RenderWindow&) override;
@@ -96,6 +96,7 @@ private:
 	float playTime;
 	long int score;
 	bool onHold;
+	bool startLock;
 	sf::Event playerInput;
 	sf::Clock stateClock;
 	Player player;

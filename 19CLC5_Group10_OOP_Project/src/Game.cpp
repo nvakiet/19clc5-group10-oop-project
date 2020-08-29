@@ -124,7 +124,7 @@ SettingsState::~SettingsState() {
 PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) : 
 	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore), 
 	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
-	playerInput(), onHold(false), playerGUI()
+	playerInput(), onHold(false), playerGUI(), startLock(true)
 {
 	srand(time(nullptr)); //New seed every time playing
 	if (level > maxLevel) level = maxLevel;
@@ -132,6 +132,7 @@ PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore)
 		traffics.UpLevel();
 		animals.UpLevel();
 	}
+	stateClock.restart();
 	if (soundManager.menu->getStatus() == sf::Music::Status::Playing) {
 		soundManager.menu->stop();
 	}
@@ -160,27 +161,15 @@ void PlayingState::update(float frameTime) {
 			soundManager.ingame->play();
 		}
 		playTime += frameTime;
-		float stateTime = stateClock.getElapsedTime().asSeconds();
-		if (stateTime < 0.1f) {
-			stateTime *= 600;
+		if (stateClock.getElapsedTime().asSeconds() > 1.5f) {
+			//Only allow player to move after all lanes have been spawned
+			startLock = false;
+			player.move(playerInput, frameTime);
+			score -= level * 100 * frameTime;
 		}
-		player.move(playerInput, frameTime);
-		traffics.update(frameTime, stateTime);
-		animals.update(frameTime, stateTime);
-		
-		//A WAY TO CALCULATE SCORE
-		/*if (player.getPosition().y < 150)
-			score += frameTime * 20 * level;
-		else if (player.getPosition().y > 200 && player.getPosition().y < 400)
-			score += frameTime * 20 * level;
-		else if (player.getPosition().y > 450 && player.getPosition().y < 550)
-			score += frameTime * 20 * level;*/
-		//score -= playTime;
-
-		//ANOTHER WAY TO CALCULATE SCORE
-		float timeToWin = 30 * (level + 1);
-		float multiplier = 100;
-		score = (level * multiplier * (timeToWin - playTime) < 0)? 0 : level * multiplier * (timeToWin - playTime);
+		traffics.update(frameTime, playTime);
+		animals.update(frameTime, playTime);
+		if (score < 0) score = 0;
 	}
 	else {
 		//stateClock.restart();
@@ -208,7 +197,8 @@ GameState* PlayingState::handleLogic() {
 			}
 			else {
 				++level;
-				return new PlayingState(level, playTime, score);
+				float timeToWin = 30 * (level + 1);
+				return new PlayingState(level, playTime, score + level * 100 * timeToWin);
 			}
 		}
 	}
@@ -217,10 +207,12 @@ GameState* PlayingState::handleLogic() {
 
 void PlayingState::draw(sf::RenderWindow& window) {
 	window.draw(laneBackground);
-	playerGUI.draw(window, score, level);
+	if (!startLock) {
+		playerGUI.draw(window, score, level);
+		player.draw(window);
+	}
 	traffics.draw(window);
 	animals.draw(window);
-	player.draw(window);
 	if (onHold) {
 		pauseMenu pauseUI(textureManager);
 		pauseUI.draw(window);
@@ -276,9 +268,10 @@ LoseState::LoseState(int savedLevel, float savedTime, long int savedScore) : lev
 }
 
 GameState* LoseState::handleInput(sf::RenderWindow& window) {
+	float timeToWin = 30 * (level + 1);
 	switch (gameMenu.Switch(window)) {
 	case 0:
-		return new PlayingState(level, 0, 0);
+		return new PlayingState(level, playTime, level*100*timeToWin);
 	case 1:
 		return new MainMenuState(window, musicOption, fullscreenOption);
 	default: return nullptr;
