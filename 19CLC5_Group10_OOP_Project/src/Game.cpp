@@ -152,7 +152,7 @@ void PlayingState::update(float frameTime) {
 		}
 		playTime += frameTime;
 		float stateTime = stateClock.getElapsedTime().asSeconds();
-		if (stateTime < 0.1f) frameTime *= 600;
+		if (stateTime < 0.1f) frameTime *= 60;
 		player.move(playerInput, frameTime);
 		traffics.update(frameTime, stateTime);
 		animals.update(frameTime, stateTime);

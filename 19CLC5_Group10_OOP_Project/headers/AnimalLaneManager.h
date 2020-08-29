@@ -23,7 +23,7 @@ private:
     texture text;
 public:
     AnimalManager(const texture& textureManager);
-    AnimalManager(const texture& textureManager, sound &s);
+    //AnimalManager(const texture& textureManager, sound &s);
     //~AnimalManager();
     //void unloadtexture();
     void update(float elapsed, float gametime);
