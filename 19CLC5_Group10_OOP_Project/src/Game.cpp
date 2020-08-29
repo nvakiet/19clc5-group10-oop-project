@@ -161,7 +161,7 @@ void PlayingState::update(float frameTime) {
 		float stateTime = stateClock.getElapsedTime().asSeconds();
 		if (stateTime < 0.1f) {
 			frameTime *= 60;
-			stateTime *= 100;
+			//stateTime *= 100;
 		}
 		player.move(playerInput, frameTime);
 		traffics.update(frameTime, stateTime);
