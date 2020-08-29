@@ -37,7 +37,7 @@ void AnimalLane::update(float elapsed, float fGameTime)
 
 
     // if ther is more than 10 animals in the lane then remove the earliest animal to have spawned
-    if (AnimalsInLane.size() > 10)
+    if (AnimalsInLane.size() > 12)
     {
         AnimalsInLane.erase(AnimalsInLane.begin());
     }
@@ -68,7 +68,7 @@ float AnimalLane::getNextSpawn()
     }
     else
     {
-        time = 2.5;
+        time = 2.0;
         number = getNumber();
     }
     return time;
