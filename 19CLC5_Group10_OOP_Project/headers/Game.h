@@ -3,6 +3,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Main.hpp>
 #include "textureLoad.h"
 #include "soundLoad.h"
 #include "Player.h"
@@ -12,6 +13,8 @@
 #include "UI.h"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
+#include <exception>
 class GameState {
 public:
 	//The pointers shall be deleted at client code
