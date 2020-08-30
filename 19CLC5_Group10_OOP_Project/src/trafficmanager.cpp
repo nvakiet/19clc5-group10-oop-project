@@ -74,9 +74,9 @@ bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
 	return false;	// no collision
 }
 
-void trafficmanager::UpLevel()
+void trafficmanager::setLevel(int newLevel)
 {
-    m_level+=10;
+    m_level += 10 * (newLevel - 1);
     for (int i=0; i<m_vland.size(); i++)
         m_vland[i].update_level(m_level);
     //cout <<m_level << '\n';

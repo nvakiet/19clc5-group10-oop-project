@@ -97,9 +97,10 @@ private:
 	float playTime;
 	long int score;
 	bool onHold;
-	int startCount; //1 to 4, 4 means spawn player
+	int startCount; //Count from 3 to -1, -1 will allow player control
 	sf::Event playerInput;
 	sf::Clock stateClock;
+	float stateTime;
 	Player player;
 	trafficmanager traffics;
 	AnimalManager animals;

@@ -124,14 +124,12 @@ SettingsState::~SettingsState() {
 PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) :
 	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore),
 	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
-	playerInput(), onHold(false), playerGUI(), startCount(1)
+	playerInput(), onHold(false), playerGUI(), startCount(3), stateTime(0)
 {
 	srand(time(nullptr)); //New seed every time playing
 	if (level > maxLevel) level = maxLevel;
-	for (int i = 1; i <= level; ++i) {
-		traffics.UpLevel();
-		animals.UpLevel();
-	}
+	traffics.setLevel(level);
+	animals.setLevel(level);
 	stateClock.restart();
 	if (soundManager.menu->getStatus() == sf::Music::Status::Playing) {
 		soundManager.menu->stop();
@@ -161,22 +159,31 @@ void PlayingState::update(float frameTime) {
 			soundManager.ingame->play();
 		}
 		playTime += frameTime;
-		float stateTime = stateClock.getElapsedTime().asSeconds();
-		if (stateTime > 3) {
+		stateTime += stateClock.restart().asSeconds();
+		if (stateTime > 4) {
 			//Only allow player to move after all lanes have been spawned
-			startCount = 4;
+			startCount = -1;
 			player.move(playerInput, frameTime);
 			score -= level * 100 * frameTime;
 		}
-		else if (stateTime > 2) startCount = 3;
+		else if (stateTime > 3) startCount = 0;
+		else if (stateTime > 2) startCount = 1;
 		else if (stateTime > 1) startCount = 2;
-		else startCount = 1;
-		traffics.update(frameTime, playTime);
-		animals.update(frameTime, playTime);
+		else startCount = 3;
+		if (stateTime <= 0.1f) {
+			traffics.update(frameTime * 60/level, stateTime / level);
+			animals.update(frameTime * 60/level, stateTime / level);
+		}
+		else {
+			traffics.update(frameTime, stateTime);
+			animals.update(frameTime, stateTime);
+		}
+		/*traffics.update(frameTime, stateTime);
+		animals.update(frameTime, stateTime);*/
 		if (score < 0) score = 0;
 	}
 	else {
-		//stateClock.restart();
+		stateClock.restart();
 		soundManager.ingame->pause();
 	}
 }
@@ -211,21 +218,20 @@ GameState* PlayingState::handleLogic() {
 
 void PlayingState::draw(sf::RenderWindow& window) {
 	window.draw(laneBackground);
+	playerGUI.draw(window, score, level);
 	traffics.draw(window);
 	animals.draw(window);
-	if (startCount == 4) {
-		playerGUI.draw(window, score, level);
-		player.draw(window);
-	}
+	if (startCount == -1) player.draw(window);
 	else {
 		sf::Font font;
 		font.loadFromFile("images/fonts/arial.ttf");
 		sf::Text countText;
 		countText.setFont(font);
-		countText.setCharacterSize(100);
+		countText.setCharacterSize(150);
 		countText.setFillColor(sf::Color::Red);
 		countText.setStyle(sf::Text::Bold);
-		countText.setString(to_string(startCount));
+		if (startCount == 0) countText.setString("GO!");
+		else countText.setString(to_string(startCount));
 		countText.setOrigin(countText.getGlobalBounds().width / 2, countText.getGlobalBounds().height / 2);
 		countText.setPosition(400, 300);
 		window.draw(countText);

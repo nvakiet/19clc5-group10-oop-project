@@ -58,9 +58,9 @@ bool AnimalManager::checkCollosion(sf::FloatRect other, double fYpos)
 	return false;	// no collision
 }
 
-void AnimalManager::UpLevel()
+void AnimalManager::setLevel(int newLevel)
 {
-    level+=4;
+	level += 4 * (newLevel - 1);
     for (int i = 0; i < land.size(); i++)
 		land[i].update_level(level);
     //cout << level << '\n';

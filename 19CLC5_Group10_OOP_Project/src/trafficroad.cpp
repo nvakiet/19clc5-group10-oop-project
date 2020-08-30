@@ -65,8 +65,8 @@ void trafficlane::update(double elapsed, double fGameTime)
 
 double trafficlane::getNextSpawn()
 {
-    double magicmin[5] = {2, 1 , 0.7 , 0.5 , 0.3};
-    double magicmax[5] = {3, 2 , 1 , 0.9 , 0.5};
+    double magicmin[5] = {1, 0.8 , 0.6 , 0.4 , 0.2};
+    double magicmax[5] = {2.5, 2 , 1.5 , 1 , 0.5};
 	double fMinTime; 	// Minimum time for a car to spawn
 	double fMaxTime;		// Maximum time for a car to spawn
 	int tmp = min(m_level/10  , 4.0);

@@ -29,7 +29,7 @@ public:
     void draw(sf::RenderWindow& window);
     bool checkCollosion(sf::FloatRect other);
     bool checkCollosion(sf::FloatRect other, double fYpos);
-    void UpLevel();
+    void setLevel(int);
 };
 
 #endif // AnimalManager_H
