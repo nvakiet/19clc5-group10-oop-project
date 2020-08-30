@@ -18,10 +18,11 @@ Animation::Animation(double fx,double fy,double width,double length,double trend
 sf::RectangleShape Animation::picture_animation(int mode)
 {
     double time = SpawnClock.getElapsedTime().asMilliseconds();
-
-    if (time > 100 && (mode==1))
+    float switchTime = 8 * 50 / Animation_texture.size();
+    if (time > switchTime && (mode==1))
     {
-        index_pic = (index_pic+mode)%8;
+        //time -= 100;
+        index_pic = (index_pic+mode) % Animation_texture.size();
         SpawnClock.restart();
     }
     sf::RectangleShape m_rectBox;
@@ -29,10 +30,8 @@ sf::RectangleShape Animation::picture_animation(int mode)
 
     m_rectBox.setSize(sf::Vector2f(m_fLength, m_fWidth));	// Sets the size of the animal
     if(m_fWidth==50 && m_fLength==30)
-        m_rectBox.setOrigin(15,25); // nay la luoi bieng!
+        m_rectBox.setOrigin(m_rectBox.getGlobalBounds().width / 2, m_rectBox.getGlobalBounds().height / 2); // nay la luoi bieng!
     m_rectBox.setPosition(sf::Vector2f(m_fX, m_fY)); // set position of animal
-
-
 
     if (m_trend < 0)
         m_rectBox.scale(-1, 1); // reverses the textture

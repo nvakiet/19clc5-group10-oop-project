@@ -2,7 +2,7 @@
 #include "trafficmanager.h"
 #include "AnimalLaneManager.h"
 //Player::Player(const sf::Texture& playerTexture, const sf::Sound& moveSound) : state(1), x(400), y(575) {
-Player::Player(vector<sf::Texture*> playerTexture, const sf::Sound& moveSound) : state(1), x(400), y(575) {
+Player::Player(const vector<sf::Texture*>& playerTexture, const sf::Sound& moveSound) : state(1), x(400), y(575) {
 //	playerSprite.setTexture(playerTexture); //Player texture is a rectangle size 400 x 500
 //	playerSprite.setScale(0.1f, 0.1f);
 //	playerSprite.setPosition(400, 575);

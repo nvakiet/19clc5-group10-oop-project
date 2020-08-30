@@ -12,7 +12,7 @@ class AnimalManager;
 class Player {
 public:
 	//Player(const sf::Texture&, const sf::Sound&);
-	Player(vector<sf::Texture*>, const sf::Sound&);
+	Player(const vector<sf::Texture*>&, const sf::Sound&);
 	void move(const sf::Event&, const float&);
 	void draw(sf::RenderWindow&);
 	bool isImpact(trafficmanager*);

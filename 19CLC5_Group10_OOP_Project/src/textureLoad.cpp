@@ -2,21 +2,25 @@
 
 texture::texture()
 {
-	const int nAnimal = 3;
+	/*const int nAnimal = 3;
 	string animalDirectory[nAnimal] =
 	{
 		"images/textures/animals/cat.png",
 		"images/textures/animals/dog.png",
 		"images/textures/animals/dino.png",
 	};
+	animal.reserve(3);
 	for (int i = 0; i < nAnimal; i++)
 	{
 		animal.push_back(new sf::Texture);
 		animal[i]->loadFromFile(animalDirectory[i]);
-	}
+	}*/
 
 	//Load Cat,dog,dino animation
 	const int pic = 8;
+	CatAnimation.reserve(pic);
+	DogAnimation.reserve(pic);
+	DinoAnimation.reserve(pic);
 	string animalcatAnimation[pic] =
 	{
 		"images/animations/catwalk/Run (1).png",
@@ -28,6 +32,7 @@ texture::texture()
 		"images/animations/catwalk/Run (7).png",
 		"images/animations/catwalk/Run (8).png",
 	};
+	
 	for (int i = 0; i < pic; i++)
 	{
 		CatAnimation.push_back(new sf::Texture);
@@ -71,6 +76,7 @@ texture::texture()
 
 
 	const int nVehicle = 22;
+	vehicle.reserve(nVehicle);
 	string vehicleDirectory[nVehicle] =
 	{
 		"images/textures/vehicles/AudiBlue.png",
@@ -103,6 +109,7 @@ texture::texture()
 	}
 
 	const int nPlayer = 15;
+	player.reserve(nPlayer);
 	string playerDirectory[nPlayer] =
 	{
 		//"images/textures/players/player1.png"

@@ -36,8 +36,8 @@ void AnimalLane::update(float elapsed, float fGameTime)
     }
 
 
-    // if ther is more than 10 animals in the lane then remove the earliest animal to have spawned
-    if (AnimalsInLane.size() > 20)
+    // if ther is more than 30 animals in the lane then remove the earliest animal to have spawned
+    if (AnimalsInLane.size() > 30)
     {
         AnimalsInLane.erase(AnimalsInLane.begin());
     }
@@ -71,6 +71,8 @@ float AnimalLane::getNextSpawn()
     {
         double mgf[] = {2,1.5,1.5,1,1};
         double mgs[] = {3,2,1.7,1.7,1.5};
+        /*double mgf[5] = { 1.5, 0.9 , 0.7 , 0.5 , 0.3 };
+        double mgs[5] = { 2.5, 1.5 , 1 , 0.9 , 0.5 };*/
         fMinTime = mgf[(int) level/4-1];
         fMaxTime = mgs[(int) level/4-1];
         time = (fMinTime + (float)(rand()) / ((float)(RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times

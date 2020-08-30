@@ -7,18 +7,18 @@ bool loadOptions(int&, int&);
 //Game Driver
 int main() {
 	//Check valid files and load options
-//	try {
-//		checkAllFilesExist();
-//	}
-//	catch (runtime_error& e) {
-//		time_t now = time(nullptr);
-//		tm currentTime;
-//		//localtime_s(&currentTime, &now);
-//		ofstream fout("ErrorLogs.txt", ios::app);
-//		fout << put_time(&currentTime, "%F %T ") << e.what() << endl;
-//		fout.close();
-//		return -1;
-//	}
+	try {
+		checkAllFilesExist();
+	}
+	catch (runtime_error& e) {
+		time_t now = time(nullptr);
+		tm currentTime;
+		//localtime_s(&currentTime, &now);
+		ofstream fout("ErrorLogs.txt", ios::app);
+		fout << put_time(&currentTime, "%F %T ") << e.what() << endl;
+		fout.close();
+		return -1;
+	}
 	int music = 1, fullscreen = 0;
 	loadOptions(music, fullscreen);
 	//Init window framerate limit, starting game state and setup frame clock
@@ -59,13 +59,13 @@ int main() {
 }
 
 bool checkAllFilesExist() {
-	//1 Font, 57 textures, 8 audio files
-	const int fileCount = 68;
+	//1 Font, 71 textures, 8 audio files
+	const int fileCount = /*82*/ 79;
 	string AllRequiredFiles[fileCount] = {
 		"images/fonts/arial.ttf",
-		"images/textures/animals/cat.png",
+		/*"images/textures/animals/cat.png",
 		"images/textures/animals/dog.png",
-		"images/textures/animals/dino.png",
+		"images/textures/animals/dino.png",*/
 		"images/animations/catwalk/Run (1).png",
 		"images/animations/catwalk/Run (2).png",
 		"images/animations/catwalk/Run (3).png",
@@ -112,7 +112,21 @@ bool checkAllFilesExist() {
 		"images/textures/vehicles/Ambulance.png",
 		"images/textures/vehicles/Truck.png",
 		"images/textures/vehicles/Van.png",
-		"images/textures/players/player1.png",
+		"images/animations/playeridle/Idle (1).png",
+		"images/animations/playeridle/Idle (2).png",
+		"images/animations/playeridle/Idle (3).png",
+		"images/animations/playeridle/Idle (4).png",
+		"images/animations/playeridle/Idle (5).png",
+		"images/animations/playeridle/Idle (6).png",
+		"images/animations/playeridle/Idle (7).png",
+		"images/animations/playeridle/Idle (8).png",
+		"images/animations/playeridle/Idle (9).png",
+		"images/animations/playeridle/Idle (10).png",
+		"images/animations/playeridle/Idle (11).png",
+		"images/animations/playeridle/Idle (12).png",
+		"images/animations/playeridle/Idle (13).png",
+		"images/animations/playeridle/Idle (14).png",
+		"images/animations/playeridle/Idle (15).png",
 		"images/textures/buttons/left.png",
 		"images/textures/buttons/right.png",
 		"images/textures/BG.png",

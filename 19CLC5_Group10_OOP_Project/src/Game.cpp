@@ -123,7 +123,7 @@ SettingsState::~SettingsState() {
 
 PlayingState::PlayingState(int savedLevel, float savedTime, long int savedScore) :
 	level(savedLevel), maxLevel(5), playTime(savedTime), score(savedScore),
-	player(*textureManager.player[0], soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
+	player(textureManager.player, soundManager.moveSound), traffics(textureManager, soundManager.stopSound), animals(textureManager),
 	playerInput(), onHold(false), playerGUI(), startCount(3), stateTime(0)
 {
 	srand(time(nullptr)); //New seed every time playing
@@ -171,8 +171,8 @@ void PlayingState::update(float frameTime) {
 		else if (stateTime > 1) startCount = 2;
 		else startCount = 3;
 		if (stateTime <= 0.1f) {
-			traffics.update(frameTime * 60, stateTime);
-			animals.update(frameTime * 60, stateTime);
+			traffics.update(frameTime * 30, stateTime);
+			animals.update(frameTime * 30, stateTime);
 		}
 		else {
 			traffics.update(frameTime, stateTime);
@@ -220,7 +220,7 @@ void PlayingState::draw(sf::RenderWindow& window) {
 	window.draw(laneBackground);
 	playerGUI.draw(window, score, level);
 	traffics.draw(window);
-	animals.draw(window);
+	if (level > 1) animals.draw(window);
 	if (startCount == -1) player.draw(window);
 	else {
 		sf::Font font;

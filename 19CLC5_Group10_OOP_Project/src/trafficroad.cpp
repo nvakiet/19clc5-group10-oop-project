@@ -34,16 +34,16 @@ void trafficlane::update(double elapsed, double fGameTime)
     {
         //set speed to cars
         double speed = 0;
-        double mg[]={90,100,110,120,150,170,200,220};
+        double mg[]={ 110,120,130,140,170,190,220,250 };
         int countt=0;
 //        for (int i=0; i<k; i++)
 //        {
 //            cout <<i << "::::" << CarsInLane[i].m_fX << " " << CarsInLane[i].m_fSpeed << '\n';
 //        }
-        for (int i=0; i<8; i++)
-            mg[i]+=20.0;
+        /*for (int i=0; i<8; i++)
+            mg[i]+=20.0;*/
 
-        while (speed <= 70)
+        while (speed <= 90)
         {
             countt++;
             speed = mg[rand()%8] + hack_speed;
@@ -65,8 +65,8 @@ void trafficlane::update(double elapsed, double fGameTime)
 
 double trafficlane::getNextSpawn()
 {
-    double magicmin[5] = {1, 0.8 , 0.6 , 0.4 , 0.2};
-    double magicmax[5] = {2.5, 2 , 1.5 , 1 , 0.5};
+    double magicmin[5] = { 1.5, 0.9 , 0.7 , 0.5 , 0.3 };
+    double magicmax[5] = { 2.5, 1.5 , 1 , 0.9 , 0.5 };
 	double fMinTime; 	// Minimum time for a car to spawn
 	double fMaxTime;		// Maximum time for a car to spawn
 	int tmp = min(m_level/10  , 4.0);
