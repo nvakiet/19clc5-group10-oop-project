@@ -34,7 +34,7 @@ void trafficlane::update(double elapsed, double fGameTime)
     {
         //set speed to cars
         double speed = 0;
-        double mg[]={90,100,100,100,170,200,170,220};
+        double mg[]={90,100,110,120,150,170,200,220};
         int countt=0;
 //        for (int i=0; i<k; i++)
 //        {
@@ -49,7 +49,7 @@ void trafficlane::update(double elapsed, double fGameTime)
             speed = mg[rand()%8] + hack_speed;
             if (CarsInLane.size()==0) break;
             if (!CarsInLane[CarsInLane.size()-1].crash(speed)) speed =0;
-            if (countt > 2) goto jump;
+            if (countt > 3) goto jump;
         }
         CarsInLane.push_back(vehicle(speed * m_LaneSpeed, m_laneXStart, m_laneHeight, m_Width, m_vptexTextures));
         //cout << speed << '\n';

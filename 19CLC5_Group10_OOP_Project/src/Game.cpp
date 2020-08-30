@@ -171,8 +171,8 @@ void PlayingState::update(float frameTime) {
 		else if (stateTime > 1) startCount = 2;
 		else startCount = 3;
 		if (stateTime <= 0.1f) {
-			traffics.update(frameTime * 60/level, stateTime / level);
-			animals.update(frameTime * 60/level, stateTime / level);
+			traffics.update(frameTime * 60, stateTime);
+			animals.update(frameTime * 60, stateTime);
 		}
 		else {
 			traffics.update(frameTime, stateTime);
