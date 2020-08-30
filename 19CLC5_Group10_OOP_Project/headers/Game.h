@@ -15,6 +15,7 @@
 #include <iostream>
 #include <iomanip>
 #include <exception>
+#include <time.h>
 class GameState {
 public:
 	//The pointers shall be deleted at client code
@@ -38,13 +39,13 @@ public:
 
 	//Switch to 2 state: PlayingState(with or without saved data), SettingsState
 	GameState* handleInput(sf::RenderWindow&) override;
-	
+
 	//No need in this state
 	void update(float frameTime) override {};
-	
+
 	//No need in this state
 	GameState* handleLogic() override { return nullptr; }
-	
+
 	void draw(sf::RenderWindow&) override;
 	~MainMenuState() = default;
 private:
@@ -62,10 +63,10 @@ public:
 
 	//No need in this state
 	void update(float frameTime) override {}
-	
+
 	//No need in this state
 	GameState* handleLogic() override { return nullptr; }
-	
+
 	void draw(sf::RenderWindow&) override;
 	~SettingsState();
 private:
@@ -77,16 +78,16 @@ public:
 	//Play the game with default data or saved data
 	//Init game components, skip to saved level
 	PlayingState(int = 1, float = 0, long int = 6000);
-	
+
 	//Switch onHold to true or MainMenuState or Close the window
 	GameState* handleInput(sf::RenderWindow&) override;
-	
+
 	//Update player's, traffics' and animals' positions, new score and playTime
 	void update(float frameTime) override;
-	
+
 	//Check impacts, living or dying, then either continue to new level or switch to VictoryState or LoseState
 	GameState* handleLogic() override;
-	
+
 	//Draw everything
 	void draw(sf::RenderWindow&) override;
 	~PlayingState();

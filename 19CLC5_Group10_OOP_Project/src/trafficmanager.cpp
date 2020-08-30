@@ -77,5 +77,8 @@ bool trafficmanager::checkCollosion(sf::FloatRect other, double fYpos)
 void trafficmanager::UpLevel()
 {
     m_level+=10;
+    for (int i=0; i<m_vland.size(); i++)
+        m_vland[i].update_level(m_level);
+    //cout <<m_level << '\n';
 }
 

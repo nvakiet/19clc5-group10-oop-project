@@ -7,21 +7,21 @@ bool loadOptions(int&, int&);
 //Game Driver
 int main() {
 	//Check valid files and load options
-	try {
-		checkAllFilesExist();
-	}
-	catch (runtime_error& e) {
-		time_t now = time(nullptr);
-		tm currentTime;
-		localtime_s(&currentTime, &now);
-		ofstream fout("ErrorLogs.txt", ios::app);
-		fout << put_time(&currentTime, "%F %T ") << e.what() << endl;
-		fout.close();
-		return -1;
-	}
+//	try {
+//		checkAllFilesExist();
+//	}
+//	catch (runtime_error& e) {
+//		time_t now = time(nullptr);
+//		tm currentTime;
+//		//localtime_s(&currentTime, &now);
+//		ofstream fout("ErrorLogs.txt", ios::app);
+//		fout << put_time(&currentTime, "%F %T ") << e.what() << endl;
+//		fout.close();
+//		return -1;
+//	}
 	int music = 1, fullscreen = 0;
 	loadOptions(music, fullscreen);
-	//Init window framerate limit, starting game state and setup frame clock 
+	//Init window framerate limit, starting game state and setup frame clock
 	sf::RenderWindow window;
 	window.setFramerateLimit(60);
 	GameState* currentState = new MainMenuState(window, music, fullscreen);

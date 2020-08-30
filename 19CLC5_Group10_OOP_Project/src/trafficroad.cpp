@@ -8,7 +8,7 @@ trafficlane::trafficlane(double fXpos, double fYpos, double fWidth, double lands
     m_vptexTextures = textures;
     m_LaneSpeed = landspeed/abs(landspeed);
     m_level = level;
-    hack_speed = (rand()%3+1)*5*(m_level+1); //hack speed
+    hack_speed = (rand()%3+1)*6*(abs(m_level)+1); //hack speed
 }
 
 void trafficlane::draw(sf::RenderWindow &window)
@@ -40,6 +40,8 @@ void trafficlane::update(double elapsed, double fGameTime)
 //        {
 //            cout <<i << "::::" << CarsInLane[i].m_fX << " " << CarsInLane[i].m_fSpeed << '\n';
 //        }
+        for (int i=0; i<8; i++)
+            mg[i]+=20.0;
 
         while (speed <= 70)
         {
@@ -50,6 +52,7 @@ void trafficlane::update(double elapsed, double fGameTime)
             if (countt > 2) goto jump;
         }
         CarsInLane.push_back(vehicle(speed * m_LaneSpeed, m_laneXStart, m_laneHeight, m_Width, m_vptexTextures));
+        //cout << speed << '\n';
         spawnClock.restart();
 		m_NextSpawn = getNextSpawn();
     }
@@ -62,14 +65,16 @@ void trafficlane::update(double elapsed, double fGameTime)
 
 double trafficlane::getNextSpawn()
 {
-    double magicmin[5] = {1, 1 , 0.5 , 0.1 , 0.2};
-    double magicmax[5] = {3, 1.5 , 1 , 1.5 , 0.5};
+    double magicmin[5] = {2, 1 , 0.7 , 0.5 , 0.3};
+    double magicmax[5] = {3, 2 , 1 , 0.9 , 0.5};
 	double fMinTime; 	// Minimum time for a car to spawn
 	double fMaxTime;		// Maximum time for a car to spawn
-	int tmp = min(m_level/10 , 5.0);
+	int tmp = min(m_level/10  , 4.0);
     fMinTime = magicmin[tmp] ;
     fMaxTime = magicmax[tmp] ;
+  //  cout << (int) m_level / 10<< " " << tmp << " " << fMinTime << ' '  << fMaxTime << '\n';
 	return (fMinTime + (float) (rand()) / ( (float) (RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
+
 }
 
 bool trafficlane::checkCollision(sf::FloatRect other)
@@ -95,4 +100,10 @@ bool trafficlane::check_position_light() //have car in end true.
         if (m_LaneSpeed > 0 && CarsInLane[i].m_fX > 630) return true;
         else if (m_LaneSpeed < 0 && 170 > CarsInLane[i].m_fX) return true;
     return false;
+}
+
+void trafficlane::update_level(int x)
+{
+    m_level = x;
+    hack_speed = (rand()%3+1)*6*(m_level+1); //hack speed
 }

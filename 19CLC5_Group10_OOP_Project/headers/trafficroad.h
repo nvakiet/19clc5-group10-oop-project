@@ -17,7 +17,7 @@ class trafficlane
 private:
     double m_laneHeight;
     double m_laneXStart;
-    double m_NextSpawn;
+    double m_NextSpawn=0.1;
     double m_Width;
     double m_LaneSpeed;
     double hack_speed; //hack speed follow level
@@ -37,6 +37,7 @@ public:
     double getNextSpawn();
     bool checkCollision(sf::FloatRect other);
     bool check_position_light(); // check have car in position light or not
+    void update_level(int x);
 };
 
 #endif // TRAFFICROAD_H

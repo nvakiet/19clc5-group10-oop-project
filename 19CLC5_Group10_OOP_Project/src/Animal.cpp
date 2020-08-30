@@ -23,7 +23,6 @@ animal::animal(float speed, float xPos, float yPos, float length, vector<sf::Tex
 void animal::update(float elapsed)
 {
     fX += fSpeed * elapsed;
-
 //    m_rectBox.setPosition(sf::Vector2f(fX, fY)); // sets the animal
     animal_animation.animation_update_fX(fX);
 }

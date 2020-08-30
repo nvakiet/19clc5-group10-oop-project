@@ -4,10 +4,10 @@ AnimalManager::AnimalManager(const texture& textureManager)
 {
 	land.clear();
 
-	land.push_back(AnimalLane(0, 50, 40, 110, level, textureManager.DinoAnimation));
-	land.push_back(AnimalLane(800, 250, 40, -130, level, textureManager.DogAnimation));
-	land.push_back(AnimalLane(0, 300, 40, 120, level, textureManager.CatAnimation));
-	land.push_back(AnimalLane(800, 500, 40, -115, level, textureManager.DinoAnimation));
+	land.push_back(AnimalLane(0, 50, 40, 90, level, textureManager.DinoAnimation));
+	land.push_back(AnimalLane(800, 250, 40, -90, level, textureManager.DogAnimation));
+	land.push_back(AnimalLane(0, 300, 40, 90, level, textureManager.CatAnimation));
+	land.push_back(AnimalLane(800, 500, 40, -95, level, textureManager.DinoAnimation));
 
 }
 
@@ -61,6 +61,10 @@ bool AnimalManager::checkCollosion(sf::FloatRect other, double fYpos)
 void AnimalManager::UpLevel()
 {
     level+=4;
+    for (int i = 0; i < land.size(); i++)
+		land[i].update_level(level);
+    //cout << level << '\n';
+
 }
 
 

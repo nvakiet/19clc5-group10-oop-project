@@ -18,7 +18,7 @@ class AnimalManager
 private:
     vector<vector <sf::Texture*>> animal;
     vector <AnimalLane> land;
-    int level = 3;
+    int level = 1;
     sound m_sound;
 public:
     AnimalManager(const texture& textureManager);

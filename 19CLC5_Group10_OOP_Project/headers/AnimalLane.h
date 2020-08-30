@@ -36,6 +36,7 @@ public:
     float getNextSpawn();
     bool checkCollision(sf::FloatRect other);
     int getNumber();
+    void update_level(int x);
 };
 
 #endif // TRAFFICROAD_H

@@ -2,6 +2,7 @@
 
 AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, float level, vector<sf::Texture*> textures)
 {
+    AnimalsInLane.clear();
     laneHeight = fYpos;
     laneXStart = fXpos;
     Width = fWidth;
@@ -9,7 +10,6 @@ AnimalLane::AnimalLane(float fXpos, float fYpos, float fWidth, float landspeed, 
 
     LaneSpeed = landspeed;
     this->level = level;
-    landspeed+=this->level*2;
     number = getNumber();
 }
 void AnimalLane::draw(sf::RenderWindow& window)
@@ -27,17 +27,17 @@ void AnimalLane::update(float elapsed, float fGameTime)
         fTimeSinceSpawn = spawnClock.getElapsedTime().asSeconds() * 60;
     else
         fTimeSinceSpawn = spawnClock.getElapsedTime().asSeconds();
-    ;
+
     if (fTimeSinceSpawn > NextSpawn)
     {
-        AnimalsInLane.push_back(animal((level*1.0/2) * LaneSpeed, laneXStart, laneHeight, Width, m_vptexTextures));
+        AnimalsInLane.push_back(animal(LaneSpeed, laneXStart, laneHeight, Width, m_vptexTextures));
         spawnClock.restart();
         NextSpawn = getNextSpawn();
     }
 
 
     // if ther is more than 10 animals in the lane then remove the earliest animal to have spawned
-    if (AnimalsInLane.size() > 12)
+    if (AnimalsInLane.size() > 20)
     {
         AnimalsInLane.erase(AnimalsInLane.begin());
     }
@@ -61,14 +61,19 @@ float AnimalLane::getNextSpawn()
 
     if (number > 0)
     {
-        fMinTime = 0.2;
-        fMaxTime = 0.2;
+        double mg[] = {0.3,0.15,0.13,0.1,0.07};
+        fMinTime = mg[(int) level/4-1];
+        fMaxTime = mg[(int) level/4-1];
         time = (fMinTime + (float)(rand()) / ((float)(RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
         number--;
     }
     else
     {
-        time = 2.0;
+        double mgf[] = {2,1.5,1.5,1,1};
+        double mgs[] = {3,2,1.7,1.7,1.5};
+        fMinTime = mgf[(int) level/4-1];
+        fMaxTime = mgs[(int) level/4-1];
+        time = (fMinTime + (float)(rand()) / ((float)(RAND_MAX / (fMaxTime - fMinTime)))); //Return a float between the min and max times
         number = getNumber();
     }
     return time;
@@ -90,4 +95,12 @@ int AnimalLane::getNumber()
 {
     int n = rand() % 3 + 3;
     return n;
+}
+
+void AnimalLane::update_level(int x)
+{
+    double mg[] = {90,120,130,150,170};
+    level = x;
+    LaneSpeed = (LaneSpeed/abs(LaneSpeed)) * mg[(int) level/4-1];
+  //  cout << LaneSpeed << '\n';
 }
