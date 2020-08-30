@@ -19,15 +19,19 @@ sf::RectangleShape Animation::picture_animation(int mode)
 {
     double time = SpawnClock.getElapsedTime().asMilliseconds();
 
-    if (time > 100 && mode==1)
+    if (time > 100 && (mode==1))
     {
         index_pic = (index_pic+mode)%8;
         SpawnClock.restart();
     }
     sf::RectangleShape m_rectBox;
-    m_rectBox.setPosition(sf::Vector2f(m_fX, m_fY)); // set position of animal
-    m_rectBox.setSize(sf::Vector2f(m_fLength, m_fWidth));	// Sets the size of the animal
     m_rectBox.setTexture(Animation_texture[index_pic]); // build picture animal
+
+    m_rectBox.setSize(sf::Vector2f(m_fLength, m_fWidth));	// Sets the size of the animal
+    if(m_fWidth==50 && m_fLength==30)
+        m_rectBox.setOrigin(15,25); // nay la luoi bieng!
+    m_rectBox.setPosition(sf::Vector2f(m_fX, m_fY)); // set position of animal
+
 
 
     if (m_trend < 0)
@@ -38,5 +42,25 @@ sf::RectangleShape Animation::picture_animation(int mode)
 void Animation::animation_update_fX(double fx)
 {
     m_fX = fx;
+}
+
+void Animation::animation_update_fY(double fy)
+{
+    m_fY = fy;
+}
+
+void Animation::update_trend(double trend)
+{
+    m_trend = trend;
+}
+
+double Animation::get_fX()
+{
+    return m_fX;
+}
+
+double Animation::get_fY()
+{
+    return m_fY;
 }
 

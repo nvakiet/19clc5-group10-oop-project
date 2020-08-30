@@ -102,15 +102,31 @@ texture::texture()
 		vehicle[i]->loadFromFile(vehicleDirectory[i]);
 	}
 
-	const int nPlayer = 1;
+	const int nPlayer = 15;
 	string playerDirectory[nPlayer] =
 	{
-		"images/textures/players/player1.png"
+		//"images/textures/players/player1.png"
+		"images/animations/playeridle/Idle (1).png",
+		"images/animations/playeridle/Idle (2).png",
+		"images/animations/playeridle/Idle (3).png",
+		"images/animations/playeridle/Idle (4).png",
+		"images/animations/playeridle/Idle (5).png",
+		"images/animations/playeridle/Idle (6).png",
+		"images/animations/playeridle/Idle (7).png",
+		"images/animations/playeridle/Idle (8).png",
+		"images/animations/playeridle/Idle (9).png",
+		"images/animations/playeridle/Idle (10).png",
+		"images/animations/playeridle/Idle (11).png",
+		"images/animations/playeridle/Idle (12).png",
+		"images/animations/playeridle/Idle (13).png",
+		"images/animations/playeridle/Idle (14).png",
+		"images/animations/playeridle/Idle (15).png",
+
 	};
 	for (int i = 0; i < nPlayer; i++)
 	{
 		player.push_back(new sf::Texture);
-		player[i]->loadFromFile(playerDirectory[i]);
+		player[i]->loadFromFile(playerDirectory[i],sf::IntRect(0, 0, 300, 500));
 	}
 
 	const int nButton = 2;

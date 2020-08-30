@@ -18,7 +18,7 @@ private:
     double m_fY;
     double m_fWidth;
     double m_fLength;
-    double m_trend;
+    double m_trend;// 1 huong chinh, -1 huong phu
     vector<sf::Texture*> Animation_texture;
     int index_pic = 0;
 
@@ -26,9 +26,13 @@ private:
 
 public:
     Animation();
-    Animation(double fx,double fy,double width,double length,double fspeed,vector<sf::Texture*> textures);
+    Animation(double fx,double fy,double width,double length,double trend,vector<sf::Texture*> textures);
     sf::RectangleShape picture_animation(int mode);
     void animation_update_fX(double fX);
+    void animation_update_fY(double fY);
+    void update_trend(double trend);
+    double get_fX();
+    double get_fY();
 };
 
 #endif // ANIMATION_H
