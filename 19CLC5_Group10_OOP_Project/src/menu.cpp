@@ -11,7 +11,7 @@ menu::menu(const texture& textureList)
 
 mainMenu::mainMenu(const texture& textureList) :menu(textureList)
 {
-    nMainText = 4;
+    nMainText = 5;
     for (int i = 0; i < nMainText; i++)
     {
         mainText.push_back(new sf::Text);
@@ -20,14 +20,18 @@ mainMenu::mainMenu(const texture& textureList) :menu(textureList)
         mainText[i]->setFillColor(sf::Color::White);
         mainText[i]->setStyle(sf::Text::Bold);
     }
-    mainText[0]->setString("New Game");
-    mainText[0]->setPosition(300.f, 150.f);
-    mainText[1]->setString("Load Game");
-    mainText[1]->setPosition(295.f, 200.f);
-    mainText[2]->setString("Settings");
-    mainText[2]->setPosition(325.f, 250.f);
-    mainText[3]->setString("Exit");
-    mainText[3]->setPosition(365.f, 300.f);
+    mainText[0]->setString("CROSS THE ROAD");
+    mainText[0]->setCharacterSize(50);
+    mainText[0]->setFillColor(sf::Color::Red);
+    mainText[0]->setPosition(180.f, 50.f);
+    mainText[1]->setString("New Game");
+    mainText[1]->setPosition(300.f, 150.f);
+    mainText[2]->setString("Load Game");
+    mainText[2]->setPosition(295.f, 200.f);
+    mainText[3]->setString("Settings");
+    mainText[3]->setPosition(325.f, 250.f);
+    mainText[4]->setString("Exit");
+    mainText[4]->setPosition(365.f, 300.f);
 }
 void mainMenu::draw(sf::RenderWindow& w)
 {
@@ -53,12 +57,12 @@ int mainMenu::Switch(sf::RenderWindow& w)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             pVertical -= 1;
-            if (pVertical == -1) pVertical = nMainText - 1;
+            if (pVertical == -1) pVertical = nMainText - 2;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             pVertical += 1;
-            if (pVertical == nMainText) pVertical = 0;
+            if (pVertical == nMainText - 1) pVertical = 0;
         }
     }
     return -1;
