@@ -1,4 +1,5 @@
 #include "Game.h"
+//PLEASE SWITCH TO BUILD MODE X86 (32 BITS)
 //Function to check if the folder have all correct files
 bool checkAllFilesExist();
 //Function to load saved options
